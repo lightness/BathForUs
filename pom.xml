@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.bath</groupId>
+    <artifactId>bath-for-us</artifactId>
+    <version>1.0.0</version>
+    <packaging>war</packaging>
+
+    <dependencies>
+        <!--spring web app skeleton-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>${ver.spring}</version>
+        </dependency>
+
+        <!--any entity manager need for spring data-->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>${ver.hibernate}</version>
+        </dependency>
+
+        <!--database driver-->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${ver.mysql-connector-java}</version>
+        </dependency>
+
+        <!--need for declaring entities-->
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <version>${ver.javaee-api}</version>
+        </dependency>
+
+        <!--spring data-->
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-jpa</artifactId>
+            <version>${ver.spring-data}</version>
+        </dependency>
+
+        <!--Jackson-->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.7.2</version>
+        </dependency>
+
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <properties>
+        <ver.spring>4.2.4.RELEASE</ver.spring>
+        <ver.spring-data>1.9.2.RELEASE</ver.spring-data>
+        <ver.hibernate>5.1.0.Final</ver.hibernate>
+        <ver.javaee-api>6.0</ver.javaee-api>
+        <ver.mysql-connector-java>5.1.38</ver.mysql-connector-java>
+    </properties>
+
+</project>

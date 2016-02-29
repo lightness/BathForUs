@@ -2,10 +2,7 @@ package com.bath.entity;
 
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Set;
 
@@ -26,7 +23,7 @@ public class Value extends AbstractPersistable<Long>
     @Column
     private Long value;
 
-    @OneToMany(mappedBy = "value")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "value")
     private Set<Mark> mark;
 
 

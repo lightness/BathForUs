@@ -1,0 +1,23 @@
+{
+  "name": "BathForUs",
+  "homepage": "https://github.com/lightness/BathForUs",
+  "authors": [
+    "xual <xual@ericpol.com>"
+  ],
+  "description": "Application for collecting information about bathes",
+  "keywords": [
+    "bath"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^2.2.1",
+    "bootstrap": "^3.3.6"
+  }
+}

@@ -10,5 +10,5 @@ import java.util.List;
 @Transactional(readOnly = true)
 public interface BathRepository extends JpaRepository<Bath, Long>
 {
-    List<Bath> findAll();
+
 }
