@@ -8,38 +8,16 @@
     <script src="static/bower_components/jquery/dist/jquery.min.js"></script>
     <script src="static/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="static/bower_components/angular/angular.min.js"></script>
+    <script src="static/bower_components/angular-route/angular-route.min.js"></script>
 
     <script src="static/js/app.js"></script>
-    <script src="static/js/controller/bathController.js"></script>
+    <script src="static/js/controller/BathListCtrl.js"></script>
     <script src="static/js/service/bathRepositoryFactory.js"></script>
 
 </head>
 <body>
 
-<div ng-controller="bathController">
-
-    <table border="1">
-        <thead>
-        <tr>
-            <th>Id</th>
-            <th>Title</th>
-            <th>Address</th>
-            <th>Phone</th>
-            <th>Info</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr ng-repeat="x in data">
-            <td>{{ x.id }}</td>
-            <td><a href="bathes/{{ x.id }}">{{ x.title }}</a></td>
-            <td><a href="bathes/{{ x.id }}">{{ x.address }}</a></td>
-            <td>{{ x.phone }}</td>
-            <td>{{ x.info }}</td>
-        </tr>
-        </tbody>
-    </table>
-
-</div>
+    <div ng-view></div>
 
 </body>
 </html>
