@@ -4,10 +4,7 @@ import com.bath.entity.Bath;
 import com.bath.repository.BathRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,9 +17,16 @@ public class BathController
     private BathRepository bathRepository;
 
 
-    @RequestMapping(method = RequestMethod.GET, value = "bathes")
+    @RequestMapping(value = "bathes", method = RequestMethod.GET)
     public @ResponseBody Iterable<Bath> findAllBathes()
     {
         return bathRepository.findAll();
+    }
+
+    @RequestMapping(value = "bathes/{id}", method = RequestMethod.GET)
+    public @ResponseBody Bath findBath(
+            @PathVariable Long id)
+    {
+        return bathRepository.findOne(id);
     }
 }

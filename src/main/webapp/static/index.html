@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Bathes</title>
+    <link rel="stylesheet" href="static/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
+    <script src="static/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="static/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="static/bower_components/angular/angular.min.js"></script>
+
+    <script src="static/js/app.js"></script>
+    <script src="static/js/controller/bathController.js"></script>
+    <script src="static/js/service/bathRepositoryFactory.js"></script>
+
+</head>
+<body>
+
+    <div  ng-controller="myCtrl">
+
+        <button ng-click="myFunction()">Click me!</button>
+
+        <p>{{ count }}</p>
+
+        Data:
+        <p>{{ data }}</p>
+
+    </div>
+
+</body>
+</html>
