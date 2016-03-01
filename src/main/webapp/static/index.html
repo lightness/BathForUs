@@ -16,16 +16,30 @@
 </head>
 <body>
 
-    <div  ng-controller="myCtrl">
+<div ng-controller="bathController">
 
-        <button ng-click="myFunction()">Click me!</button>
+    <table border="1">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Address</th>
+            <th>Phone</th>
+            <th>Info</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="x in data">
+            <td>{{ x.id }}</td>
+            <td><a href="bathes/{{ x.id }}">{{ x.title }}</a></td>
+            <td><a href="bathes/{{ x.id }}">{{ x.address }}</a></td>
+            <td>{{ x.phone }}</td>
+            <td>{{ x.info }}</td>
+        </tr>
+        </tbody>
+    </table>
 
-        <p>{{ count }}</p>
-
-        Data:
-        <p>{{ data }}</p>
-
-    </div>
+</div>
 
 </body>
 </html>
