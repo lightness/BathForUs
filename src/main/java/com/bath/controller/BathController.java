@@ -2,11 +2,10 @@ package com.bath.controller;
 
 import com.bath.entity.Bath;
 import com.bath.repository.BathRepository;
+import com.bath.repository.MarkRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 
 @Controller
