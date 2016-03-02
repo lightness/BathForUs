@@ -10,23 +10,29 @@ import java.util.List;
 
 
 @Controller
-@RequestMapping(value = "/")
+@RequestMapping(value = "/bathes")
 public class BathController
 {
     @Autowired
     private BathRepository bathRepository;
 
 
-    @RequestMapping(value = "bathes", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public @ResponseBody Iterable<Bath> findAllBathes()
     {
         return bathRepository.findAll();
     }
 
-    @RequestMapping(value = "bathes/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "{id}", method = RequestMethod.GET)
     public @ResponseBody Bath findBath(
             @PathVariable Long id)
     {
         return bathRepository.findOne(id);
+    }
+
+    @RequestMapping(method = RequestMethod.POST)
+    public @ResponseBody Bath createBath(@RequestBody Bath bath)
+    {
+        return bathRepository.save(bath);
     }
 }

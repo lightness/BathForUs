@@ -12,15 +12,15 @@ import java.util.Set;
 public class Bath extends AbstractPersistable<Long>
 {
     @NotNull
-    @Column
+    @Column(nullable = false)
     private String title;
 
     @NotNull
-    @Column
+    @Column(nullable = false)
     private String address;
 
     @NotNull
-    @Column
+    @Column(nullable = false)
     private String phone;
 
     @Column

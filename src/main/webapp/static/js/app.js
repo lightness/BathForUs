@@ -2,18 +2,14 @@ angular.module('myApp', ['ngRoute'])
     .config(function($routeProvider){
         'use strict';
 
-        var BathesView = {
-            templateUrl: 'static/js/view/bathes.html',
-            controller: 'BathListCtrl'
-        };
-
-        var BathView = {
-            templateUrl: 'static/js/view/bath.html',
-            controller: 'BathDetailCtrl'
-        };
+        function View(viewPath,controller) {
+            this.templateUrl = 'static/js/view/' + viewPath;
+            this.controller = controller;
+        }
 
         $routeProvider
-            .when('/bathes', BathesView)
-            .when('/bathes/:bathId', BathView)
+            .when('/bathes', new View('bath/list.html', 'BathListCtrl'))
+            .when('/bathes/add', new View('bath/add.html', 'BathAddCtrl'))
+            .when('/bathes/:bathId', new View('bath/detail.html', 'BathDetailCtrl'))
             .otherwise({ redirectTo: '/bathes' })
     });

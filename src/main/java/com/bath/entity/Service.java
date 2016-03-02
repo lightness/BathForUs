@@ -12,11 +12,12 @@ import java.util.Set;
 public class Service extends AbstractPersistable<Long>
 {
     @NotNull
-    @Column
+    @Column(nullable = false)
+
     private String title;
 
     @NotNull
-    @Column
+    @Column(nullable = false)
     private String code;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "service")

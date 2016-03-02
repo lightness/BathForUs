@@ -12,15 +12,15 @@ import java.util.Set;
 public class Value extends AbstractPersistable<Long>
 {
     @NotNull
-    @Column
+    @Column(nullable = false)
     private String title;
 
     @NotNull
-    @Column
+    @Column(nullable = false)
     private String code;
 
     @NotNull
-    @Column
+    @Column(nullable = false)
     private Long value;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "value")

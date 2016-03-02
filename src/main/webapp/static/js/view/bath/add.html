@@ -1,0 +1,38 @@
+<div ng-controller="BathAddCtrl">
+
+    <h3>Add View</h3>
+
+    <form novalidate>
+        <table>
+            <tr ng-show="error">
+                <td>Error:</td>
+                <td>{{ error }}</td>
+            </tr>
+            <tr ng-show="bath.id">
+                <td>Id</td>
+                <td>{{ bath.id }}</td>
+            </tr>
+            <tr>
+                <td>Title</td>
+                <td><input type="text" ng-model="bath.title" class="form-control"></td>
+            </tr>
+            <tr>
+                <td>Address</td>
+                <td><input type="text" ng-model="bath.address" class="form-control"></td>
+            </tr>
+            <tr>
+                <td>Phone</td>
+                <td><input type="text" ng-model="bath.phone" class="form-control"></td>
+            </tr>
+            <tr>
+                <td>Info</td>
+                <td><textarea ng-model="bath.info" class="form-control"></textarea></td>
+            </tr>
+        </table>
+
+        <button class="btn btn-success" ng-click="save()">Save</button>
+        <a class="btn btn-default" href="#/bathes/">Go to list</a>
+
+    </form>
+
+</div>
