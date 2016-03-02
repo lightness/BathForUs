@@ -61,4 +61,9 @@ public class Mark extends AbstractPersistable<Long>
     {
         this.comment = comment;
     }
+
+    public void setId(Long id)
+    {
+        super.setId(id);
+    }
 }

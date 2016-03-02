@@ -1,55 +1,53 @@
 package com.bath.controller;
 
-import com.bath.entity.Bath;
-import com.bath.repository.BathRepository;
+import com.bath.entity.Service;
+import com.bath.repository.ServiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 
 @Controller
-@RequestMapping(value = "/bathes")
-public class BathController
+@RequestMapping(value = "/services")
+public class ServiceController
 {
     @Autowired
-    private BathRepository bathRepository;
+    private ServiceRepository serviceRepository;
 
 
     @RequestMapping(method = RequestMethod.GET)
-    public @ResponseBody Iterable<Bath> findAll()
+    public @ResponseBody Iterable<Service> findAll()
     {
-        return bathRepository.findAll();
+        return serviceRepository.findAll();
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.GET)
-    public @ResponseBody Bath findOne(
+    public @ResponseBody Service findOne(
             @PathVariable Long id)
     {
-        return bathRepository.findOne(id);
+        return serviceRepository.findOne(id);
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public @ResponseBody Bath create(
-            @RequestBody Bath bath)
+    public @ResponseBody Service create(
+            @RequestBody Service service)
     {
-        return bathRepository.save(bath);
+        return serviceRepository.save(service);
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.PUT)
-    public @ResponseBody Bath update(
+    public @ResponseBody Service update(
             @PathVariable Long id,
-            @RequestBody Bath bath)
+            @RequestBody Service service)
     {
-        bath.setId(id);
-        return bathRepository.save(bath);
+        service.setId(id);
+        return serviceRepository.save(service);
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
     public void delete(
             @PathVariable Long id)
     {
-        bathRepository.delete(id);
+        serviceRepository.delete(id);
     }
 }

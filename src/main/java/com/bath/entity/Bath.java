@@ -1,5 +1,6 @@
 package com.bath.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import javax.persistence.*;
@@ -27,6 +28,7 @@ public class Bath extends AbstractPersistable<Long>
     private String info;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "bath")
+    @JsonIgnore
     private Set<Mark> marks;
 
 
@@ -78,5 +80,10 @@ public class Bath extends AbstractPersistable<Long>
     public void setMarks(Set<Mark> marks)
     {
         this.marks = marks;
+    }
+
+    public void setId(Long id)
+    {
+        super.setId(id);
     }
 }

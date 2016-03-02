@@ -66,4 +66,9 @@ public class Value extends AbstractPersistable<Long>
     {
         this.mark = mark;
     }
+
+    public void setId(Long id)
+    {
+        super.setId(id);
+    }
 }
