@@ -11,4 +11,6 @@ import java.util.List;
 public interface MarkRepository extends JpaRepository<Mark, Long>
 {
     List<Mark> findByBathId(Long bathId);
+
+    Mark findOneByBathIdAndServiceId(Long bathId, Long serviceId);
 }

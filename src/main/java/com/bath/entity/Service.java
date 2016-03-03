@@ -13,15 +13,11 @@ public class Service extends AbstractPersistable<Long>
 {
     @NotNull
     @Column(nullable = false)
-
     private String title;
 
     @NotNull
     @Column(nullable = false)
     private String code;
-
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "service")
-    private Set<Mark> mark;
 
 
     public String getTitle()
@@ -42,16 +38,6 @@ public class Service extends AbstractPersistable<Long>
     public void setCode(String code)
     {
         this.code = code;
-    }
-
-    public Set<Mark> getMark()
-    {
-        return mark;
-    }
-
-    public void setMark(Set<Mark> mark)
-    {
-        this.mark = mark;
     }
 
     public void setId(Long id)

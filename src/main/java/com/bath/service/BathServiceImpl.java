@@ -25,7 +25,19 @@ public class BathServiceImpl implements BathService
     @Transactional
     public Mark addMark(Mark mark)
     {
-        markRepository.save(mark);
+        Mark anotherMark = markRepository.findOneByBathIdAndServiceId(mark.getBath().getId(), mark.getService().getId());
+        if (anotherMark != null)
+        {
+            anotherMark.setValue(mark.getValue());
+            anotherMark.setComment(mark.getComment());
+            markRepository.save(anotherMark);
+            mark = anotherMark;
+        }
+        else
+        {
+            markRepository.save(mark);
+        }
+
         List<Mark> bathMarks = markRepository.findByBathId(mark.getBath().getId());
         Double sum = 0D;
         for (Mark m: bathMarks)

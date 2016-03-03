@@ -6,6 +6,7 @@ import com.bath.repository.BathRepository;
 import com.bath.repository.MarkRepository;
 import com.bath.repository.ServiceRepository;
 import com.bath.repository.ValueRepository;
+import com.bath.service.BathService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -23,6 +24,8 @@ public class MarkController
     private ServiceRepository serviceRepository;
     @Autowired
     private ValueRepository valueRepository;
+    @Autowired
+    private BathService bathService;
 
 
     @RequestMapping(value = "bathes/{bathId}/marks", method = RequestMethod.GET)
@@ -42,7 +45,7 @@ public class MarkController
         mark.setService(serviceRepository.findOne(markDto.getServiceId()));
         mark.setValue(valueRepository.findOne(markDto.getValueId()));
         mark.setComment(markDto.getComment());
-        return markRepository.save(mark);
+        return bathService.addMark(mark);
     }
 
     @RequestMapping(value = "marks/{markId}", method = RequestMethod.DELETE)

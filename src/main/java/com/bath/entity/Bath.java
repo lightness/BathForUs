@@ -30,9 +30,9 @@ public class Bath extends AbstractPersistable<Long>
     @Column
     private Double averageMark;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "bath")
-    @JsonIgnore
-    private Set<Mark> marks;
+//    @OneToMany(fetch = FetchType.EAGER, mappedBy = "bath")
+//    @JsonIgnore
+//    private Set<Mark> marks;
 
 
     public String getTitle()
@@ -85,15 +85,15 @@ public class Bath extends AbstractPersistable<Long>
         this.averageMark = averageMark;
     }
 
-    public Set<Mark> getMarks()
-    {
-        return marks;
-    }
-
-    public void setMarks(Set<Mark> marks)
-    {
-        this.marks = marks;
-    }
+//    public Set<Mark> getMarks()
+//    {
+//        return marks;
+//    }
+//
+//    public void setMarks(Set<Mark> marks)
+//    {
+//        this.marks = marks;
+//    }
 
     public void setId(Long id)
     {

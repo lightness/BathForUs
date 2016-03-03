@@ -23,9 +23,6 @@ public class Value extends AbstractPersistable<Long>
     @Column(nullable = false)
     private Long value;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "value")
-    private Set<Mark> mark;
-
 
     public String getTitle()
     {
@@ -55,16 +52,6 @@ public class Value extends AbstractPersistable<Long>
     public void setValue(Long value)
     {
         this.value = value;
-    }
-
-    public Set<Mark> getMark()
-    {
-        return mark;
-    }
-
-    public void setMark(Set<Mark> mark)
-    {
-        this.mark = mark;
     }
 
     public void setId(Long id)
