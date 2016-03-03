@@ -9,6 +9,10 @@ angular.module('myApp')
 
         $scope.bath = defaultBath;
 
+        $scope.goto = function (path) {
+            $location.path(path);
+        };
+
         $scope.save = function () {
             BathRepository.add($scope.bath).then(function (response) {
                 $location.path("/bathes/"+ response.data.id);

@@ -5,6 +5,6 @@ angular.module('myApp')
             $scope.error = '';
         }, function (response) {
             $scope.data = [];
-            $scope.error = "Error: " + response.status;
+            $scope.error = response.status;
         });
     }]);

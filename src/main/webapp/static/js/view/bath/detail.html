@@ -1,11 +1,14 @@
 <div ng-controller="BathDetailCtrl">
-
-    <h3>Detail View</h3>
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>Информации о бане "{{ bath.title }}"</h2>
+        </div>
+    </md-toolbar>
 
     <a class="btn btn-default" href="#/bathes/">Go to list</a>
 
     <table class="table">
-        <tr ng-repeat="(key, value) in data">
+        <tr ng-repeat="(key, value) in bath">
             <td>{{ key }}</td>
             <td>{{ value }}</td>
         </tr>

@@ -1,6 +1,10 @@
 <div ng-controller="BathAddCtrl">
-
-    <h3>Add View</h3>
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2 ng-show="bath.title">Добавление информации о бане "{{ bath.title }}"</h2>
+            <h2 ng-show="!bath.title">Добавление информации о новой бане</h2>
+        </div>
+    </md-toolbar>
 
     <form novalidate>
         <table>
@@ -30,8 +34,8 @@
             </tr>
         </table>
 
-        <button class="btn btn-success" ng-click="save()">Save</button>
-        <a class="btn btn-default" href="#/bathes/">Go to list</a>
+        <button class="md-button md-primary md-raised" ng-click="save()">Save</button>
+        <button class="md-button md-raised" ng-click="goto('/bathes')">Go to list</button>
 
     </form>
 

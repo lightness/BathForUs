@@ -1,4 +1,4 @@
-angular.module('myApp', ['ngRoute'])
+angular.module('myApp', ['ngRoute', 'ngMaterial'])
     .config(function($routeProvider){
         'use strict';
 
