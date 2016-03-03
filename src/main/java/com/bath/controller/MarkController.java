@@ -5,7 +5,6 @@ import com.bath.entity.Mark;
 import com.bath.repository.BathRepository;
 import com.bath.repository.MarkRepository;
 import com.bath.repository.ServiceRepository;
-import com.bath.repository.ValueRepository;
 import com.bath.service.BathService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,8 +21,6 @@ public class MarkController
     private BathRepository bathRepository;
     @Autowired
     private ServiceRepository serviceRepository;
-    @Autowired
-    private ValueRepository valueRepository;
     @Autowired
     private BathService bathService;
 
@@ -43,7 +40,7 @@ public class MarkController
         Mark mark = new Mark();
         mark.setBath(bathRepository.findOne(bathId));
         mark.setService(serviceRepository.findOne(markDto.getServiceId()));
-        mark.setValue(valueRepository.findOne(markDto.getValueId()));
+        mark.setValue(markDto.getValue());
         mark.setComment(markDto.getComment());
         return bathService.addMark(mark);
     }

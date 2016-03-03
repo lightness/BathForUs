@@ -15,8 +15,8 @@ public class Mark extends AbstractPersistable<Long>
     @ManyToOne
     private Service service;
 
-    @ManyToOne
-    private Value value;
+    @Column
+    private Long value;
 
     @Column
     private String comment;
@@ -42,12 +42,12 @@ public class Mark extends AbstractPersistable<Long>
         this.service = service;
     }
 
-    public Value getValue()
+    public Long getValue()
     {
         return value;
     }
 
-    public void setValue(Value value)
+    public void setValue(Long value)
     {
         this.value = value;
     }

@@ -42,7 +42,7 @@ public class BathServiceImpl implements BathService
         Double sum = 0D;
         for (Mark m: bathMarks)
         {
-            sum += m.getValue().getValue();
+            sum += m.getValue();
         }
         Bath bath = mark.getBath();
         bath.setAverageMark(sum / bathMarks.size());

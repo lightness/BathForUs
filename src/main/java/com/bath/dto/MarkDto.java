@@ -9,7 +9,7 @@ public class MarkDto
     private Long serviceId;
 
     @NotNull
-    private Long valueId;
+    private Long value;
 
     @NotNull
     private String comment;
@@ -25,14 +25,14 @@ public class MarkDto
         this.serviceId = serviceId;
     }
 
-    public Long getValueId()
+    public Long getValue()
     {
-        return valueId;
+        return value;
     }
 
-    public void setValueId(Long valueId)
+    public void setValue(Long value)
     {
-        this.valueId = valueId;
+        this.value = value;
     }
 
     public String getComment()
