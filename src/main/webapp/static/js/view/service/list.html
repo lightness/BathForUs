@@ -1,0 +1,27 @@
+<div ng-controller="ServiceListCtrl">
+
+    <h3>Service List View</h3>
+
+    <a class="btn btn-success">
+        <i class="glyphicon glyphicon-plus"></i>
+        <span>Add</span>
+    </a>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Code</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="service in services">
+            <td>{{ service.id }}</td>
+            <td>{{ service.title }}</td>
+            <td>{{ service.code }}</td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
