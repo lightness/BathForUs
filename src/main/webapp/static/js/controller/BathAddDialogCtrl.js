@@ -1,5 +1,9 @@
 angular.module('myApp')
-    .controller('BathAddCtrl', ['$scope', '$location', 'BathRepository', function ($scope, $location, BathRepository) {
+    .controller('BathAddDialogCtrl', function ($scope, $mdDialog, $location, BathRepository) { 
+        $scope.closeDialog = function() {
+            $mdDialog.hide();
+        };
+
         var defaultBath = {
             title: '',
             phone: '',
@@ -9,18 +13,12 @@ angular.module('myApp')
 
         $scope.bath = defaultBath;
 
-        $scope.goto = function (path) {
-            $location.path(path);
-        };
-
         $scope.save = function () {
-            BathRepository.add($scope.bath).then(function (response) {
-                $location.path("/bathes/"+ response.data.id);
+            BathRepository.add($scope.bath).then(function () {
+                $mdDialog.hide();
             }, function (response) {
                 $scope.bath = defaultBath;
                 $scope.error = response.status;
             });
         };
-
-
-    }]);
+    });

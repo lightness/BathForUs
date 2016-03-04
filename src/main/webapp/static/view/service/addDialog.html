@@ -1,0 +1,40 @@
+<md-dialog>
+    <md-content>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2 ng-show="service.title">Добавление информации об услуге "{{ service.title }}"</h2>
+                <h2 ng-show="!service.title">Добавление информации о новой услуге</h2>
+            </div>
+        </md-toolbar>
+
+        <md-content layout-gt-sm="column" layout-padding>
+            <div ng-form name="serviceForm">
+                <!--<tr ng-show="error">-->
+                <!--<td>Ошибка:</td>-->
+                <!--<td>{{ error }}</td>-->
+                <!--</tr>-->
+                <md-input-container class="md-block flex-gt-sm" ng-show="service.id">
+                    <label>ID</label>
+                    <input name="id" ng-model="service.id" class="md-input" disabled>
+                </md-input-container>
+                <md-input-container class="md-block flex-gt-sm">
+                    <label>Название</label>
+                    <input name="title" ng-model="service.title" class="md-input" required>
+                </md-input-container>
+                <md-input-container class="md-block flex-gt-sm">
+                    <label>Код</label>
+                    <input name="code" ng-model="service.code" class="md-input" required>
+                </md-input-container>
+
+            </div>
+        </md-content>
+    </md-content>
+    <md-dialog-actions>
+        <md-button class="md-button md-default" ng-click="closeDialog()">
+            Закрыть
+        </md-button>
+        <md-button class="md-raised md-button md-primary" ng-click="save()" ng-disabled="serviceForm.title.$invalid || serviceForm.code.$invalid">
+            Сохранить
+        </md-button>
+    </md-dialog-actions>
+</md-dialog>

@@ -1,0 +1,58 @@
+<md-dialog>
+    <md-content>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2 ng-show="bath.title">Добавление информации о бане "{{ bath.title }}"</h2>
+                <h2 ng-show="!bath.title">Добавление информации о новой бане</h2>
+            </div>
+        </md-toolbar>
+
+        <md-content layout-gt-sm="column" layout-padding>
+            <div ng-form name="serviceForm">
+                <!--<tr ng-show="error">-->
+                    <!--<td>Ошибка:</td>-->
+                    <!--<td>{{ error }}</td>-->
+                <!--</tr>-->
+
+                <md-input-container class="md-block flex-gt-sm" ng-show="bath.id">
+                    <label>ID</label>
+                    <input name="id" ng-model="bath.id" class="md-input" disabled>
+                </md-input-container>
+
+                <md-input-container class="md-block flex-gt-sm">
+                    <label>Название</label>
+                    <input name="title" ng-model="bath.title" class="md-input" required>
+                </md-input-container>
+
+                <md-input-container class="md-block flex-gt-sm">
+                    <label>Адрес</label>
+                    <input name="address" ng-model="bath.address" class="md-input" required>
+                </md-input-container>
+
+                <md-input-container class="md-block flex-gt-sm">
+                    <label>Телефон</label>
+                    <input name="phone" ng-model="bath.phone" class="md-input" required>
+                </md-input-container>
+
+                <md-input-container class="md-block flex-gt-sm">
+                    <label>Информация</label>
+                    <texta
+                </md-input-container>
+
+                <tr>
+                    <td>Информация</td>
+                    <td><textarea ng-model="bath.info" class="form-control"></textarea></td>
+                </tr>
+
+            </div>
+        </md-content>
+    </md-content>
+    <md-dialog-actions>
+        <md-button ng-click="closeDialog()">
+            Закрыть
+        </md-button>
+        <md-button ng-click="save()">
+            Сохранить
+        </md-button>
+    </md-dialog-actions>
+</md-dialog>
