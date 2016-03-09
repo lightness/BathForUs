@@ -8,7 +8,7 @@ angular.module('myApp')
             get: function (id) {
                 return $http.get(url + id);
             },
-            add: function (bath) {
+            save: function (bath) {
                 return $http.post(url, bath);
             }
         }

@@ -4,6 +4,7 @@ import com.bath.entity.Bath;
 import com.bath.repository.BathRepository;
 import com.bath.repository.MarkRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,9 +18,9 @@ public class BathController
 
 
     @RequestMapping(method = RequestMethod.GET)
-    public @ResponseBody Iterable<Bath> findAll()
+    public @ResponseBody Iterable<Bath> findAll(Pageable pageable)
     {
-        return bathRepository.findAll();
+        return bathRepository.findAll(pageable);
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.GET)
@@ -30,7 +31,7 @@ public class BathController
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public @ResponseBody Bath create(
+    public @ResponseBody Bath save(
             @RequestBody Bath bath) {
         return bathRepository.save(bath);
     }

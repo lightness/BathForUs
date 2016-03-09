@@ -38,6 +38,13 @@
             <version>${ver.javaee-api}</version>
         </dependency>
 
+        <!--spring data commons core-->
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-commons-core</artifactId>
+            <version>1.4.1.RELEASE</version>
+        </dependency>
+
         <!--spring data-->
         <dependency>
             <groupId>org.springframework.data</groupId>
