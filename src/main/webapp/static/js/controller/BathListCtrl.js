@@ -1,5 +1,5 @@
 angular.module('myApp')
-    .controller('BathListCtrl', ['$scope', 'BathRepository', '$mdDialog', function ($scope, BathRepository, $mdDialog) {
+    .controller('BathListCtrl', function ($scope, BathRepository, $mdDialog, $location) {
 
         fetchAll();
 
@@ -15,6 +15,10 @@ angular.module('myApp')
             });
         };
 
+        $scope.goto = function (path) { debugger;
+            $location.path(path);
+        };
+
         function fetchAll() {
             BathRepository.getAll().then(function (response) {
                 $scope.bathes = response.data;
@@ -24,4 +28,4 @@ angular.module('myApp')
                 $scope.error = response.status;
             });
         }
-    }]);
+    });

@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <title>Бани для нас</title>
     <link rel="stylesheet" href="static/bower_components/angular-material/angular-material.min.css">
+    <link rel="stylesheet" href="static/css/style.css">
+
+
     <script src="static/bower_components/jquery/dist/jquery.min.js"></script>
     <script src="static/bower_components/angular/angular.min.js"></script>
     <script src="static/bower_components/angular-route/angular-route.min.js"></script>
@@ -18,11 +21,24 @@
     <script src="static/js/controller/BathAddDialogCtrl.js"></script>
     <script src="static/js/controller/ServiceAddDialogCtrl.js"></script>
     <script src="static/js/controller/ServiceListCtrl.js"></script>
+    <script src="static/js/controller/MainMenuCtrl.js"></script>
     <script src="static/js/service/BathRepositoryFactory.js"></script>
     <script src="static/js/service/ServiceRepositoryFactory.js"></script>
 
 </head>
 <body>
+
+<md-toolbar ng-controller="MainMenuCtrl">
+    <div class="md-toolbar-tools">
+        <h2>Бани для нас!</h2>
+        <button class="md-button" type="button" aria-label="Список бань" ng-click="goto('/bathes')">
+            <span ng-class="setClassByUrl('md-subhead', '/bathes')">Список бань</span>
+        </button>
+        <button class="md-button" type="button" aria-label="Перечень услуг" ng-click="goto('/services')">
+            <span ng-class="setClassByUrl('md-subhead', '/services')">Перечень услуг</span>
+        </button>
+    </div>
+</md-toolbar>
 
 <div ng-view></div>
 

@@ -4,15 +4,26 @@
             <div class="md-toolbar-tools">
                 <h2 ng-show="bath.title">Добавление информации о бане "{{ bath.title }}"</h2>
                 <h2 ng-show="!bath.title">Добавление информации о новой бане</h2>
+
+                <button class="md-icon-button md-button md-ink-ripple" type="button" ng-click="closeDialog()">
+                    <md-icon aria-label="Закрыть" class="ng-scope ng-isolate-scope" aria-hidden="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fit="" preserveAspectRatio="xMidYMid meet">
+                            <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path>
+                        </svg>
+                    </md-icon>
+                    <div class="md-ripple-container"></div>
+                </button>
+            </div>
+        </md-toolbar>
+
+        <md-toolbar ng-show="error" class="md-warn">
+            <div class="md-toolbar-tools">
+                <h6>Ошибка "{{ error }}"</h6>
             </div>
         </md-toolbar>
 
         <md-content layout-gt-sm="column" layout-padding>
-            <div ng-form name="serviceForm">
-                <!--<tr ng-show="error">-->
-                    <!--<td>Ошибка:</td>-->
-                    <!--<td>{{ error }}</td>-->
-                <!--</tr>-->
+            <div ng-form name="bathForm">
 
                 <md-input-container class="md-block flex-gt-sm" ng-show="bath.id">
                     <label>ID</label>
@@ -21,28 +32,23 @@
 
                 <md-input-container class="md-block flex-gt-sm">
                     <label>Название</label>
-                    <input name="title" ng-model="bath.title" class="md-input" required>
+                    <input name="title" ng-model="bath.title" ng-maxlength="255" class="md-input" required>
                 </md-input-container>
 
                 <md-input-container class="md-block flex-gt-sm">
                     <label>Адрес</label>
-                    <input name="address" ng-model="bath.address" class="md-input" required>
+                    <input name="address" ng-model="bath.address" ng-maxlength="255" class="md-input" required>
                 </md-input-container>
 
                 <md-input-container class="md-block flex-gt-sm">
                     <label>Телефон</label>
-                    <input name="phone" ng-model="bath.phone" class="md-input" required>
+                    <input name="phone" ng-model="bath.phone" ng-maxlength="255" class="md-input" required>
                 </md-input-container>
 
                 <md-input-container class="md-block flex-gt-sm">
                     <label>Информация</label>
-                    <texta
+                    <textarea name="info" ng-model="bath.info" class="md-input"></textarea>
                 </md-input-container>
-
-                <tr>
-                    <td>Информация</td>
-                    <td><textarea ng-model="bath.info" class="form-control"></textarea></td>
-                </tr>
 
             </div>
         </md-content>
@@ -51,7 +57,7 @@
         <md-button ng-click="closeDialog()">
             Закрыть
         </md-button>
-        <md-button ng-click="save()">
+        <md-button ng-click="save()" ng-disabled="bathForm.title.$invalid || bathForm.address.$invalid || bathForm.phone.$invalid">
             Сохранить
         </md-button>
     </md-dialog-actions>
