@@ -2,7 +2,6 @@ package com.bath.controller;
 
 import com.bath.entity.Bath;
 import com.bath.repository.BathRepository;
-import com.bath.repository.MarkRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
