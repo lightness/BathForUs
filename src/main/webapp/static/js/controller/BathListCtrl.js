@@ -1,7 +1,16 @@
 angular.module('myApp')
     .controller('BathListCtrl', function ($scope, BathRepository, $mdDialog, $location) {
 
-        fetchAll();
+        $scope.selected = [];
+        $scope.query = {
+            page: 1,
+            size: 5,
+            sort: 'title',
+            dir: 'asc'
+        };
+
+        fetchAll({page: $scope.query.page, 'page.size': $scope.query.size,
+            'page.sort': $scope.query.sort, 'page.sort.dir': $scope.query.dir});
 
         $scope.showDialog = function (bath, $event) {
             $mdDialog.show({
@@ -15,13 +24,25 @@ angular.module('myApp')
             });
         };
 
+        $scope.onPaginate = function (page, limit) {
+            //fetchAll(angular.extend({}, $scope.query, {page: page, size: limit}));
+            fetchAll({page: $scope.query.page, 'page.size': $scope.query.size, 
+                'page.sort': $scope.query.sort, 'page.sort.dir': $scope.query.dir})
+        };
+
+        $scope.onReorder = function (order) {
+            //fetchAll(angular.extend({}, $scope.query, {sort: order}));
+            fetchAll({page: $scope.query.page, 'page.size': $scope.query.size,
+                'page.sort': $scope.query.sort, 'page.sort.dir': $scope.query.dir})
+        };
+
         $scope.goto = function (path) {
             $location.path(path);
         };
 
-        function fetchAll() {
-            BathRepository.getAll().then(function (response) {
-                $scope.bathes = response.data;
+        function fetchAll(params) {
+            BathRepository.getAll(params).then(function (response) {
+                $scope.data = response.data;
                 $scope.error = '';
             }, function (response) {
                 $scope.bathes = [];

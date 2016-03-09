@@ -1,5 +1,6 @@
 package com.bath.config;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.web.PageableArgumentResolver;
@@ -30,11 +31,17 @@ public class MvcConfig extends WebMvcConfigurerAdapter
         registry.addViewController("/").setViewName("forward:/static/index.html");
     }
 
+    @Bean
+    public ServletWebArgumentResolverAdapter resolver() {
+        return new ServletWebArgumentResolverAdapter(pageable());
+    }
+
+    @Bean
+    public PageableArgumentResolver pageable() {
+        return new PageableArgumentResolver();
+    }
     @Override
     public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
-        PageableArgumentResolver resolver = new PageableArgumentResolver();
-        resolver.setPrefix("page");
-        resolver.setSeparator(".");
-        argumentResolvers.add(new ServletWebArgumentResolverAdapter(resolver));
+        argumentResolvers.add(resolver());
     }
 }

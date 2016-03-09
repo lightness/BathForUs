@@ -2,25 +2,30 @@
 
     <md-button class="md-primary md-ink-ripple md-raised" ng-click="showDialog({}, $event)">Добавить баню</md-button>
 
-    <table class="table">
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Название</th>
-            <th>Адрес</th>
-            <th>Телефон</th>
-            <th>Информация</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr ng-repeat="bath in bathes" ng-click="showDialog(bath, $event)">
-            <td>{{ bath.id }}</td>
-            <td><a class="md-button md-primary md-ink-ripple" href="#/bathes/{{ bath.id }}">{{ bath.title }}</a></td>
-            <td><a class="md-button md-primary md-ink-ripple" href="#/bathes/{{ bath.id }}">{{ bath.address }}</a></td>
-            <td>{{ bath.phone }}</td>
-            <td>{{ bath.info }}</td>
-        </tr>
-        </tbody>
-    </table>
+    <md-table-container>
+        <table md-table md-row-select ng-model="selected"> <!--md-progress="promise"-->
+            <thead md-head md-order="query.sort" md-on-reorder="onReorder">
+            <tr md-row>
+                <th md-column md-order-by="nameToLower"><span>Название</span></th>
+                <th md-column>Адрес</th>
+                <th md-column>Телефон</th>
+                <th md-column md-numeric>Оценка</th>
+                <th md-column>Информация</th>
+            </tr>
+            </thead>
+            <tbody md-body>
+            <tr md-row md-select="bath" md-select-id="{{bath.id}}" md-auto-select ng-repeat="bath in data.content">
+                <td md-cell>{{bath.title}}</td>
+                <td md-cell>{{bath.address}}</td>
+                <td md-cell>{{bath.phone}}</td>
+                <td md-cell>{{bath.averageMark}}</td>
+                <td md-cell>{{bath.info}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </md-table-container>
+
+    <md-table-pagination md-limit="query.size" md-page="query.page"
+                         md-total="{{bathes.totalElements}}" md-on-paginate="onPaginate" md-page-select></md-table-pagination>
 
 </div>
