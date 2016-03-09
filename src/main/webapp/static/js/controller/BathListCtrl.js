@@ -3,19 +3,19 @@ angular.module('myApp')
 
         fetchAll();
 
-        $scope.showDialog = function ($event) {
+        $scope.showDialog = function (bath, $event) {
             $mdDialog.show({
                 targetEvent: $event,
                 templateUrl: 'static/view/bath/addDialog.html',
                 controller: 'BathAddDialogCtrl',
-                locals: {bath: ''},
+                locals: { bath: bath },
                 onRemoving: function () {
                     fetchAll();
                 }
             });
         };
 
-        $scope.goto = function (path) { debugger;
+        $scope.goto = function (path) {
             $location.path(path);
         };
 

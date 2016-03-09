@@ -1,6 +1,6 @@
 <div ng-controller="ServiceListCtrl">
 
-    <button class="md-button md-primary md-ink-ripple md-raised" ng-click="showDialog($event)">Добавить услугу</button>
+    <md-button class="md-primary md-ink-ripple md-raised" ng-click="showDialog({}, $event)">Добавить услугу</md-button>
 
     <table class="table">
         <thead>
@@ -11,7 +11,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="service in services">
+        <tr ng-repeat="service in services" ng-click="showDialog(service, $event)">
             <td>{{ service.id }}</td>
             <td>{{ service.title }}</td>
             <td>{{ service.code }}</td>

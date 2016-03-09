@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Бани для нас</title>
+    <link rel="icon" type="image/ico" href="static/img/broom.ico"/>
+    <link href='https://fonts.googleapis.com/css?family=Marck+Script' rel='stylesheet' type='text/css'>
+
     <link rel="stylesheet" href="static/bower_components/angular-material/angular-material.min.css">
     <link rel="stylesheet" href="static/css/style.css">
 
@@ -30,13 +33,16 @@
 
 <md-toolbar ng-controller="MainMenuCtrl">
     <div class="md-toolbar-tools">
-        <h2>Бани для нас!</h2>
-        <button class="md-button" type="button" aria-label="Список бань" ng-click="goto('/bathes')">
+        <md-button class="md-icon-button logo" ng-click="goto('/bathes')">
+            <img class="logo-image" src="static/img/broom-white.png">
+        </md-button>
+        <h2 class="logo-text">#BathForUs</h2>
+        <md-button class="md-button" aria-label="Список бань" ng-click="goto('/bathes')">
             <span ng-class="setClassByUrl('md-subhead', '/bathes')">Список бань</span>
-        </button>
-        <button class="md-button" type="button" aria-label="Перечень услуг" ng-click="goto('/services')">
+        </md-button>
+        <md-button class="md-button" aria-label="Перечень услуг" ng-click="goto('/services')">
             <span ng-class="setClassByUrl('md-subhead', '/services')">Перечень услуг</span>
-        </button>
+        </md-button>
     </div>
 </md-toolbar>
 

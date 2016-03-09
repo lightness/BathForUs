@@ -31,17 +31,7 @@ public class BathController
 
     @RequestMapping(method = RequestMethod.POST)
     public @ResponseBody Bath create(
-            @RequestBody Bath bath)
-    {
-        return bathRepository.save(bath);
-    }
-
-    @RequestMapping(value = "{id}", method = RequestMethod.PUT)
-    public @ResponseBody Bath update(
-            @PathVariable Long id,
-            @RequestBody Bath bath)
-    {
-        bath.setId(id);
+            @RequestBody Bath bath) {
         return bathRepository.save(bath);
     }
 

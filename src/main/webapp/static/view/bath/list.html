@@ -1,6 +1,6 @@
 <div ng-controller="BathListCtrl">
 
-    <button class="md-button md-primary md-ink-ripple md-raised" ng-click="showDialog($event)">Добавить баню</button>
+    <md-button class="md-primary md-ink-ripple md-raised" ng-click="showDialog({}, $event)">Добавить баню</md-button>
 
     <table class="table">
         <thead>
@@ -13,7 +13,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="bath in bathes">
+        <tr ng-repeat="bath in bathes" ng-click="showDialog(bath, $event)">
             <td>{{ bath.id }}</td>
             <td><a class="md-button md-primary md-ink-ripple" href="#/bathes/{{ bath.id }}">{{ bath.title }}</a></td>
             <td><a class="md-button md-primary md-ink-ripple" href="#/bathes/{{ bath.id }}">{{ bath.address }}</a></td>

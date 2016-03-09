@@ -29,18 +29,9 @@ public class ServiceController
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public @ResponseBody Service create(
+    public @ResponseBody Service save(
             @RequestBody Service service)
     {
-        return serviceRepository.save(service);
-    }
-
-    @RequestMapping(value = "{id}", method = RequestMethod.PUT)
-    public @ResponseBody Service update(
-            @PathVariable Long id,
-            @RequestBody Service service)
-    {
-        service.setId(id);
         return serviceRepository.save(service);
     }
 

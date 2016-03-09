@@ -1,18 +1,21 @@
 angular.module('myApp')
-    .controller('ServiceAddDialogCtrl', function ($scope, $mdDialog, $location, ServiceRepository) {
+    .controller('ServiceAddDialogCtrl', function ($scope, $mdDialog, $location, ServiceRepository, service) {
+
         $scope.closeDialog = function() {
             $mdDialog.hide();
         };
 
-        var defaultService = {
+        var emptyService = {
             title: '',
             code: ''
         };
 
-        $scope.bath = defaultService;
+        var defaultService = angular.merge({}, emptyService, service);
+
+        $scope.service = defaultService;
 
         $scope.save = function () {
-            ServiceRepository.add($scope.service).then(function () {
+            ServiceRepository.save($scope.service).then(function () {
                 $mdDialog.hide();
             }, function (response) {
                 $scope.service = defaultService;

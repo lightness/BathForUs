@@ -3,12 +3,12 @@ angular.module('myApp')
 
         fetchAll();
 
-        $scope.showDialog = function ($event) {
+        $scope.showDialog = function (service, $event) {
             $mdDialog.show({
                 targetEvent: $event,
                 templateUrl: 'static/view/service/addDialog.html',
                 controller: 'ServiceAddDialogCtrl',
-                locals: {service: ''},
+                locals: { service: service },
                 onRemoving: function () {
                     fetchAll();
                 }

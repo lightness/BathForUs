@@ -54,10 +54,10 @@
         </md-content>
     </md-content>
     <md-dialog-actions>
-        <md-button ng-click="closeDialog()">
+        <md-button class="md-default" ng-click="closeDialog()">
             Закрыть
         </md-button>
-        <md-button ng-click="save()" ng-disabled="bathForm.title.$invalid || bathForm.address.$invalid || bathForm.phone.$invalid">
+        <md-button class="md-raised md-primary" ng-click="save()" ng-disabled="bathForm.title.$invalid || bathForm.address.$invalid || bathForm.phone.$invalid">
             Сохранить
         </md-button>
     </md-dialog-actions>
