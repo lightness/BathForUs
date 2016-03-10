@@ -23,8 +23,8 @@ angular.module('myApp')
             });
         };
 
-        $scope.onPaginate = function (page, limit) { 
-            angular.merge($scope.query, { page: page, size: limit });
+        $scope.onPaginate = function (page, limit) {
+            angular.merge($scope.query, {page: page, size: limit});
             fetchAll();
         };
 
@@ -44,12 +44,14 @@ angular.module('myApp')
                 "page.sort.dir": $scope.query.dir
             };
 
-            BathRepository.getAll(requestData).then(function (response) {
-                $scope.data = response.data;
-                $scope.error = '';
-            }, function (response) {
-                $scope.bathes = [];
-                $scope.error = response.status;
-            });
+            BathRepository
+                .getAll(requestData)
+                .then(function (response) {
+                    $scope.data = response.data;
+                    $scope.error = '';
+                }, function (response) {
+                    $scope.data = [];
+                    $scope.error = response.status;
+                });
         }
     });

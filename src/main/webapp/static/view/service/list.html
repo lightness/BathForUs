@@ -2,21 +2,32 @@
 
     <md-button class="md-primary md-ink-ripple md-raised" ng-click="showDialog({}, $event)">Добавить услугу</md-button>
 
-    <table class="table">
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Название</th>
-            <th>Код</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr ng-repeat="service in services" ng-click="showDialog(service, $event)">
-            <td>{{ service.id }}</td>
-            <td>{{ service.title }}</td>
-            <td>{{ service.code }}</td>
-        </tr>
-        </tbody>
-    </table>
+    <md-table-container>
+        <table md-table md-row-select ng-model="selected">
+            <thead md-head md-order="query.sort" md-on-reorder="onReorder">
+            <tr md-row>
+                <th md-column>ID</th>
+                <th md-column md-order-by="title">Название</th>
+                <th md-column>Код</th>
+            </tr>
+            </thead>
+            <tbody md-body>
+            <tr md-row md-select="bath" md-select-id="{{bath.id}}" md-auto-select ng-repeat="service in data.content">
+                <td md-cell>{{ service.id }}</td>
+                <td md-cell>{{ service.title }}</td>
+                <td md-cell>{{ service.code }}</td>
+            </tr>
+            </tbody>
+        </table>
+    </md-table-container>
+
+    <md-table-pagination md-limit="query.size"
+                         md-page="query.page"
+                         md-total="{{data.totalElements}}"
+                         md-on-paginate="onPaginate"
+                         md-page-select
+                         md-label="{page: 'Страница:', rowsPerPage: 'Записей на странице:', of: 'из'}">
+
+    </md-table-pagination>
 
 </div>

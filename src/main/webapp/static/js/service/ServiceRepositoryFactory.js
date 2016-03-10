@@ -2,8 +2,8 @@ angular.module('myApp')
     .factory('ServiceRepository', ['$http', function ($http) {
         var url = 'services/';
         return {
-            getAll: function () {
-                return $http.get(url);
+            getAll: function (params) {
+                return $http.get(url, { params: params });
             },
             get: function (id) {
                 return $http.get(url + id);
