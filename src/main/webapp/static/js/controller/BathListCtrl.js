@@ -9,15 +9,14 @@ angular.module('myApp')
             dir: 'asc'
         };
 
-        fetchAll({page: $scope.query.page, 'page.size': $scope.query.size,
-            'page.sort': $scope.query.sort, 'page.sort.dir': $scope.query.dir});
+        fetchAll();
 
         $scope.showDialog = function (bath, $event) {
             $mdDialog.show({
                 targetEvent: $event,
                 templateUrl: 'static/view/bath/addDialog.html',
                 controller: 'BathAddDialogCtrl',
-                locals: { bath: bath },
+                locals: {bath: bath},
                 onRemoving: function () {
                     fetchAll();
                 }
@@ -25,23 +24,26 @@ angular.module('myApp')
         };
 
         $scope.onPaginate = function (page, limit) {
-            //fetchAll(angular.extend({}, $scope.query, {page: page, size: limit}));
-            fetchAll({page: $scope.query.page, 'page.size': $scope.query.size, 
-                'page.sort': $scope.query.sort, 'page.sort.dir': $scope.query.dir})
+            fetchAll();
         };
 
-        $scope.onReorder = function (order) {
-            //fetchAll(angular.extend({}, $scope.query, {sort: order}));
-            fetchAll({page: $scope.query.page, 'page.size': $scope.query.size,
-                'page.sort': $scope.query.sort, 'page.sort.dir': $scope.query.dir})
+        $scope.onReorder = function (order) { debugger;
+            fetchAll();
         };
 
         $scope.goto = function (path) {
             $location.path(path);
         };
 
-        function fetchAll(params) {
-            BathRepository.getAll(params).then(function (response) {
+        function fetchAll() {
+            var requestData = {
+                "page": $scope.query.page,
+                "page.size": $scope.query.size,
+                "page.sort": $scope.query.sort,
+                "page.sort.dir": $scope.query.dir
+            };
+
+            BathRepository.getAll(requestData).then(function (response) {
                 $scope.data = response.data;
                 $scope.error = '';
             }, function (response) {

@@ -1,3 +1,4 @@
+// # Obsolete
 angular.module('myApp')
     .controller('BathDetailCtrl', ['$scope', '$routeParams', 'BathRepository', function ($scope, $routeParams, BathRepository) {
         BathRepository.get($routeParams.bathId).then(function (response) {

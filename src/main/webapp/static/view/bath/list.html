@@ -3,10 +3,10 @@
     <md-button class="md-primary md-ink-ripple md-raised" ng-click="showDialog({}, $event)">Добавить баню</md-button>
 
     <md-table-container>
-        <table md-table md-row-select ng-model="selected"> <!--md-progress="promise"-->
+        <table md-table md-row-select ng-model="selected">
             <thead md-head md-order="query.sort" md-on-reorder="onReorder">
             <tr md-row>
-                <th md-column md-order-by="nameToLower"><span>Название</span></th>
+                <th md-column md-order-by="title"><span>Название</span></th>
                 <th md-column>Адрес</th>
                 <th md-column>Телефон</th>
                 <th md-column md-numeric>Оценка</th>
@@ -25,7 +25,12 @@
         </table>
     </md-table-container>
 
-    <md-table-pagination md-limit="query.size" md-page="query.page"
-                         md-total="{{bathes.totalElements}}" md-on-paginate="onPaginate" md-page-select></md-table-pagination>
+    <md-table-pagination md-limit="query.size"
+                         md-page="query.page"
+                         md-total="{{bathes.totalElements}}"
+                         md-on-paginate="onPaginate"
+                         md-page-select>
+
+    </md-table-pagination>
 
 </div>
