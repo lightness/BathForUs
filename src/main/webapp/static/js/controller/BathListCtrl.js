@@ -23,11 +23,12 @@ angular.module('myApp')
             });
         };
 
-        $scope.onPaginate = function (page, limit) {
+        $scope.onPaginate = function (page, limit) { 
+            angular.merge($scope.query, { page: page, size: limit });
             fetchAll();
         };
 
-        $scope.onReorder = function (order) { debugger;
+        $scope.onReorder = function (order) {
             fetchAll();
         };
 
@@ -37,7 +38,7 @@ angular.module('myApp')
 
         function fetchAll() {
             var requestData = {
-                "page": $scope.query.page,
+                "page.page": $scope.query.page,
                 "page.size": $scope.query.size,
                 "page.sort": $scope.query.sort,
                 "page.sort.dir": $scope.query.dir

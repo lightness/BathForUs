@@ -38,8 +38,12 @@ public class MvcConfig extends WebMvcConfigurerAdapter
 
     @Bean
     public PageableArgumentResolver pageable() {
-        return new PageableArgumentResolver();
+        PageableArgumentResolver pageableArgumentResolver = new PageableArgumentResolver();
+        pageableArgumentResolver.setPrefix("page");
+        pageableArgumentResolver.setSeparator(".");
+        return pageableArgumentResolver;
     }
+
     @Override
     public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
         argumentResolvers.add(resolver());
