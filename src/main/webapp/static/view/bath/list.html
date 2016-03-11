@@ -1,9 +1,12 @@
 <div ng-controller="BathListCtrl">
 
-    <md-button class="md-primary md-ink-ripple md-raised" ng-click="showDialog({}, $event)">Добавить баню</md-button>
+    <md-button class="md-primary md-ink-ripple md-raised" ng-click="showDialog({}, $event)">
+        <md-icon md-svg-src="static/img/svg/add.svg"></md-icon>
+        <span>Добавить баню</span>
+    </md-button>
 
     <md-table-container>
-        <table md-table md-row-select ng-model="selected">
+        <table md-table>
             <thead md-head md-order="query.sort" md-on-reorder="onReorder">
             <tr md-row>
                 <th md-column md-order-by="title"><span>Название</span></th>
@@ -15,20 +18,20 @@
             </tr>
             </thead>
             <tbody md-body>
-            <tr md-row md-select="bath" md-select-id="{{ bath.id }}" md-auto-select ng-repeat="bath in data.content">
+            <tr md-row ng-repeat="bath in data.content">
                 <td md-cell>{{ bath.title }}</td>
                 <td md-cell>{{ bath.address }}</td>
                 <td md-cell>{{ bath.phone }}</td>
                 <td md-cell>{{ bath.averageMark }}</td>
                 <td md-cell>{{ bath.info }}</td>
                 <td md-cell>
-                    <md-button class="md-fab md-mini md-primary" aria-label="Редактировать">
+                    <md-button class="md-fab md-mini md-primary" aria-label="Редактировать" ng-click="showDialog(bath, $event)">
                         <md-tooltip md-direction="top">
                             Редактировать
                         </md-tooltip>
                         <md-icon md-svg-src="static/img/svg/edit.svg"></md-icon>
                     </md-button>
-                    <md-button class="md-fab md-mini md-primary" aria-label="Use Android">
+                    <md-button class="md-fab md-mini md-primary" aria-label="Удалить" ng-click="showDeleteDialog(bath, $event)">
                         <md-tooltip md-direction="top">
                             Удалить
                         </md-tooltip>

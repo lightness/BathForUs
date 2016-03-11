@@ -1,21 +1,39 @@
 <div ng-controller="ServiceListCtrl">
 
-    <md-button class="md-primary md-ink-ripple md-raised" ng-click="showDialog({}, $event)">Добавить услугу</md-button>
+    <md-button class="md-primary md-ink-ripple md-raised" ng-click="showDialog({}, $event)">
+        <md-icon md-svg-src="static/img/svg/add.svg"></md-icon>
+        <span>Добавить услугу</span>
+    </md-button>
 
     <md-table-container>
-        <table md-table md-row-select ng-model="selected">
+        <table md-table>
             <thead md-head md-order="query.sort" md-on-reorder="onReorder">
             <tr md-row>
                 <th md-column md-order-by="id" md-numeric>ID</th>
                 <th md-column md-order-by="title">Название</th>
                 <th md-column md-order-by="code">Код</th>
+                <th md-column>Действия</th>
             </tr>
             </thead>
             <tbody md-body>
-            <tr md-row md-select="service" md-select-id="{{ service.id }}" md-auto-select ng-repeat="service in data.content">
+            <tr md-row ng-repeat="service in data.content">
                 <td md-cell>{{ service.id }}</td>
                 <td md-cell>{{ service.title }}</td>
                 <td md-cell>{{ service.code }}</td>
+                <td md-cell>
+                    <md-button class="md-fab md-mini md-primary" aria-label="Редактировать" ng-click="showDialog(service, $event)">
+                        <md-tooltip md-direction="top">
+                            Редактировать
+                        </md-tooltip>
+                        <md-icon md-svg-src="static/img/svg/edit.svg"></md-icon>
+                    </md-button>
+                    <md-button class="md-fab md-mini md-primary" aria-label="Удалить" ng-click="showDeleteDialog(service, $event)">
+                        <md-tooltip md-direction="top">
+                            Удалить
+                        </md-tooltip>
+                        <md-icon md-svg-src="static/img/svg/delete.svg"></md-icon>
+                    </md-button>
+                </td>
             </tr>
             </tbody>
         </table>

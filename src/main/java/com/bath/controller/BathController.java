@@ -36,9 +36,10 @@ public class BathController
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
-    public void delete(
+    public @ResponseBody String delete(
             @PathVariable Long id)
     {
         bathRepository.delete(id);
+        return "";
     }
 }

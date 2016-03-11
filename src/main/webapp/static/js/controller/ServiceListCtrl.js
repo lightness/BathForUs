@@ -23,6 +23,26 @@ angular.module('myApp')
             });
         };
 
+        $scope.showDeleteDialog = function (service, $event) {
+            $mdDialog.show(
+                $mdDialog.confirm()
+                    .targetEvent($event)
+                    .clickOutsideToClose(true)
+                    .title('Подтверждение удаления')
+                    .textContent('Подтвердите удаление услуги "'+ service.title +'"')
+                    .ariaLabel('Подтверждение удаления')
+                    .ok('Удалить')
+                    .cancel('Не удалять')
+            ).then(function () {
+                ServiceRepository
+                    .remove(service.id)
+                    .then(function () {
+                        debugger;
+                        fetchAll();
+                    });
+            });
+        };
+
         $scope.onPaginate = function (page, limit) {
             angular.merge($scope.query, {page: page, size: limit});
             fetchAll();

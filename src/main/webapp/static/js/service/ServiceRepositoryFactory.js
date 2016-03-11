@@ -10,6 +10,9 @@ angular.module('myApp')
             },
             save: function (bath) {
                 return $http.post(url, bath);
+            },
+            remove: function (id) {
+                return $http.delete(url + id);
             }
         }
     }]);

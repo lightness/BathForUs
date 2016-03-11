@@ -37,9 +37,10 @@ public class ServiceController
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
-    public void delete(
+    public @ResponseBody String delete(
             @PathVariable Long id)
     {
         serviceRepository.delete(id);
+        return "";
     }
 }
