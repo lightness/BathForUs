@@ -11,6 +11,7 @@
                 <th md-column md-order-by="phone">Телефон</th>
                 <th md-column md-order-by="averageMark" md-numeric>Оценка</th>
                 <th md-column md-order-by="info">Информация</th>
+                <th md-column>Действия</th>
             </tr>
             </thead>
             <tbody md-body>
@@ -20,6 +21,20 @@
                 <td md-cell>{{ bath.phone }}</td>
                 <td md-cell>{{ bath.averageMark }}</td>
                 <td md-cell>{{ bath.info }}</td>
+                <td md-cell>
+                    <md-button class="md-fab md-mini md-primary" aria-label="Редактировать">
+                        <md-tooltip md-direction="top">
+                            Редактировать
+                        </md-tooltip>
+                        <md-icon md-svg-src="static/img/svg/edit.svg"></md-icon>
+                    </md-button>
+                    <md-button class="md-fab md-mini md-primary" aria-label="Use Android">
+                        <md-tooltip md-direction="top">
+                            Удалить
+                        </md-tooltip>
+                        <md-icon md-svg-src="static/img/svg/delete.svg"></md-icon>
+                    </md-button>
+                </td>
             </tr>
             </tbody>
         </table>
