@@ -7,19 +7,19 @@
             <thead md-head md-order="query.sort" md-on-reorder="onReorder">
             <tr md-row>
                 <th md-column md-order-by="title"><span>Название</span></th>
-                <th md-column>Адрес</th>
-                <th md-column>Телефон</th>
-                <th md-column md-numeric>Оценка</th>
-                <th md-column>Информация</th>
+                <th md-column md-order-by="address">Адрес</th>
+                <th md-column md-order-by="phone">Телефон</th>
+                <th md-column md-order-by="averageMark" md-numeric>Оценка</th>
+                <th md-column md-order-by="info">Информация</th>
             </tr>
             </thead>
             <tbody md-body>
-            <tr md-row md-select="bath" md-select-id="{{bath.id}}" md-auto-select ng-repeat="bath in data.content">
-                <td md-cell>{{bath.title}}</td>
-                <td md-cell>{{bath.address}}</td>
-                <td md-cell>{{bath.phone}}</td>
-                <td md-cell>{{bath.averageMark}}</td>
-                <td md-cell>{{bath.info}}</td>
+            <tr md-row md-select="bath" md-select-id="{{ bath.id }}" md-auto-select ng-repeat="bath in data.content">
+                <td md-cell>{{ bath.title }}</td>
+                <td md-cell>{{ bath.address }}</td>
+                <td md-cell>{{ bath.phone }}</td>
+                <td md-cell>{{ bath.averageMark }}</td>
+                <td md-cell>{{ bath.info }}</td>
             </tr>
             </tbody>
         </table>
@@ -27,10 +27,10 @@
 
     <md-table-pagination md-limit="query.size"
                          md-page="query.page"
-                         md-total="{{data.totalElements}}"
+                         md-total="{{ data.totalElements }}"
                          md-on-paginate="onPaginate"
                          md-page-select
-                         md-label="{page: 'Страница:', rowsPerPage: 'Записей на странице:', of: 'из'}">
+                         md-label="{ page: 'Страница:', rowsPerPage: 'Записей на странице:', of: 'из' }">
 
     </md-table-pagination>
 

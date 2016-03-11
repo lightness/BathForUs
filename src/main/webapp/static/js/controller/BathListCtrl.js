@@ -29,10 +29,11 @@ angular.module('myApp')
         };
 
         $scope.onReorder = function (sort) {
-            if (sort.startsWith('-'))
+            if (sort.startsWith('-')) {
                 angular.merge($scope.query, {sort: sort.slice(1), dir: 'desc'});
-            else
+            } else {
                 angular.merge($scope.query, {sort: sort, dir: 'asc'});
+            }
             fetchAll();
         };
 

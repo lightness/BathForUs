@@ -3,7 +3,7 @@ angular.module('myApp')
         var url = 'bathes/';
         return {
             getAll: function (params) {
-                return $http.get(url, {params: params});
+                return $http.get(url, { params: params });
             },
             get: function (id) {
                 return $http.get(url + id);
