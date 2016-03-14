@@ -1,6 +1,6 @@
 <div ng-controller="BathListCtrl">
 
-    <md-button class="md-primary md-ink-ripple md-raised" ng-click="showDialog({}, $event)">
+    <md-button class="md-primary md-ink-ripple md-raised" ng-click="showSaveDialog({}, $event)">
         <md-icon md-svg-src="static/img/svg/add.svg"></md-icon>
         <span>Добавить баню</span>
     </md-button>
@@ -14,7 +14,7 @@
                 <th md-column md-order-by="phone">Телефон</th>
                 <th md-column md-order-by="averageMark" md-numeric>Оценка</th>
                 <th md-column md-order-by="info">Информация</th>
-                <th md-column>Действия</th>
+                <th md-column md-numeric>Действия</th>
             </tr>
             </thead>
             <tbody md-body>
@@ -25,7 +25,13 @@
                 <td md-cell>{{ bath.averageMark }}</td>
                 <td md-cell>{{ bath.info }}</td>
                 <td md-cell>
-                    <md-button class="md-fab md-mini md-primary" aria-label="Редактировать" ng-click="showDialog(bath, $event)">
+                    <md-button class="md-fab md-mini md-primary" aria-label="Подробная информация" ng-click="showDetailDialog(bath, $event)">
+                        <md-tooltip md-direction="top">
+                            Подробная информация
+                        </md-tooltip>
+                        <md-icon md-svg-src="static/img/svg/detail.svg"></md-icon>
+                    </md-button>
+                    <md-button class="md-fab md-mini md-primary" aria-label="Редактировать" ng-click="showSaveDialog(bath, $event)">
                         <md-tooltip md-direction="top">
                             Редактировать
                         </md-tooltip>

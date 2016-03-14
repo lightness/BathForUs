@@ -11,7 +11,7 @@ angular.module('myApp')
 
         fetchAll();
 
-        $scope.showDialog = function (service, $event) {
+        $scope.showSaveDialog = function (service, $event) {
             $mdDialog.show({
                 targetEvent: $event,
                 templateUrl: 'static/view/service/addDialog.html',
@@ -37,7 +37,6 @@ angular.module('myApp')
                 ServiceRepository
                     .remove(service.id)
                     .then(function () {
-                        debugger;
                         fetchAll();
                     });
             });

@@ -1,6 +1,6 @@
 <div ng-controller="ServiceListCtrl">
 
-    <md-button class="md-primary md-ink-ripple md-raised" ng-click="showDialog({}, $event)">
+    <md-button class="md-primary md-ink-ripple md-raised" ng-click="showSaveDialog({}, $event)">
         <md-icon md-svg-src="static/img/svg/add.svg"></md-icon>
         <span>Добавить услугу</span>
     </md-button>
@@ -12,7 +12,7 @@
                 <th md-column md-order-by="id" md-numeric>ID</th>
                 <th md-column md-order-by="title">Название</th>
                 <th md-column md-order-by="code">Код</th>
-                <th md-column>Действия</th>
+                <th md-column md-numeric>Действия</th>
             </tr>
             </thead>
             <tbody md-body>
@@ -21,7 +21,7 @@
                 <td md-cell>{{ service.title }}</td>
                 <td md-cell>{{ service.code }}</td>
                 <td md-cell>
-                    <md-button class="md-fab md-mini md-primary" aria-label="Редактировать" ng-click="showDialog(service, $event)">
+                    <md-button class="md-fab md-mini md-primary" aria-label="Редактировать" ng-click="showSaveDialog(service, $event)">
                         <md-tooltip md-direction="top">
                             Редактировать
                         </md-tooltip>

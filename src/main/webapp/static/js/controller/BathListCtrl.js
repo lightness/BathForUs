@@ -11,12 +11,12 @@ angular.module('myApp')
 
         fetchAll();
 
-        $scope.showDialog = function (bath, $event) {
+        $scope.showSaveDialog = function (bath, $event) {
             $mdDialog.show({
                 targetEvent: $event,
                 templateUrl: 'static/view/bath/addDialog.html',
                 controller: 'BathAddDialogCtrl',
-                locals: {bath: bath},
+                locals: { bath: bath },
                 onRemoving: function () {
                     fetchAll();
                 }
@@ -37,9 +37,21 @@ angular.module('myApp')
                 BathRepository
                     .remove(bath.id)
                     .then(function () {
-                        debugger;
                         fetchAll();
                     });
+            });
+        };
+
+        $scope.showDetailDialog = function(bath, $event) {
+            $mdDialog.show({
+                controller: 'BathDetailDialogCtrl',
+                templateUrl: 'static/view/bath/detailDialog.html',
+                targetEvent: $event,
+                locals: { bath: bath }
+            }).then(function(answer) {
+                //$scope.status = 'You said the information was "' + answer + '".';
+            }, function() {
+                //$scope.status = 'You cancelled the dialog.';
             });
         };
 
