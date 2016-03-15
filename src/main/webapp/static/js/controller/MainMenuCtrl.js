@@ -1,5 +1,6 @@
 angular.module('myApp')
     .controller('MainMenuCtrl', function ($scope, $location) {
+
         $scope.goto = function (path) {
             $location.path(path);
         };

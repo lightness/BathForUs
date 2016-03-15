@@ -25,24 +25,26 @@
                 <td md-cell>{{ bath.averageMark }}</td>
                 <td md-cell>{{ bath.info }}</td>
                 <td md-cell>
-                    <md-button class="md-fab md-mini md-primary" aria-label="Подробная информация" ng-click="showDetailDialog(bath, $event)">
-                        <md-tooltip md-direction="top">
-                            Подробная информация
-                        </md-tooltip>
-                        <md-icon md-svg-icon="detail"></md-icon>
-                    </md-button>
-                    <md-button class="md-fab md-mini md-primary" aria-label="Редактировать" ng-click="showSaveDialog(bath, $event)">
-                        <md-tooltip md-direction="top">
-                            Редактировать
-                        </md-tooltip>
-                        <md-icon md-svg-icon="edit"></md-icon>
-                    </md-button>
-                    <md-button class="md-fab md-mini md-primary" aria-label="Удалить" ng-click="showDeleteDialog(bath, $event)">
-                        <md-tooltip md-direction="top">
-                            Удалить
-                        </md-tooltip>
-                        <md-icon md-svg-icon="close"></md-icon>
-                    </md-button>
+                    <section layout="row" layout-align="end center" layout-wrap>
+                        <md-button class="md-fab md-mini md-primary" aria-label="Подробная информация" ng-click="showDetailDialog(bath, $event)">
+                            <md-tooltip md-direction="top">
+                                Подробная информация
+                            </md-tooltip>
+                            <md-icon md-svg-icon="detail"></md-icon>
+                        </md-button>
+                        <md-button class="md-fab md-mini md-primary" aria-label="Редактировать" ng-click="showSaveDialog(bath, $event)">
+                            <md-tooltip md-direction="top">
+                                Редактировать
+                            </md-tooltip>
+                            <md-icon md-svg-icon="edit"></md-icon>
+                        </md-button>
+                        <md-button class="md-fab md-mini md-primary" aria-label="Удалить" ng-click="showDeleteDialog(bath, $event)">
+                            <md-tooltip md-direction="top">
+                                Удалить
+                            </md-tooltip>
+                            <md-icon md-svg-icon="close"></md-icon>
+                        </md-button>
+                    </section>
                 </td>
             </tr>
             </tbody>

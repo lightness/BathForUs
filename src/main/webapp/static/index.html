@@ -27,24 +27,96 @@
     <script src="static/js/controller/ServiceAddDialogCtrl.js"></script>
     <script src="static/js/controller/ServiceListCtrl.js"></script>
     <script src="static/js/controller/MainMenuCtrl.js"></script>
+    <script src="static/js/controller/LoginCtrl.js"></script>
     <script src="static/js/service/BathRepositoryFactory.js"></script>
     <script src="static/js/service/ServiceRepositoryFactory.js"></script>
 
 </head>
 <body>
 
-<md-toolbar ng-controller="MainMenuCtrl">
+<md-toolbar ng-controller="MainMenuCtrl" layout="row">
     <div class="md-toolbar-tools">
+
         <md-button class="md-icon-button logo" ng-click="goto('/bathes')">
             <img class="logo-image" src="static/img/broom-white.png">
         </md-button>
+
         <h2 class="logo-text">#BathForUs</h2>
-        <md-button class="md-button" aria-label="Список бань" ng-click="goto('/bathes')">
+
+        <md-button aria-label="Список бань" ng-click="goto('/bathes')">
             <span ng-class="setClassByUrl('md-subhead', '/bathes')">Список бань</span>
         </md-button>
-        <md-button class="md-button" aria-label="Перечень услуг" ng-click="goto('/services')">
+
+        <md-button aria-label="Перечень услуг" ng-click="goto('/services')">
             <span ng-class="setClassByUrl('md-subhead', '/services')">Перечень услуг</span>
         </md-button>
+
+        <span flex></span>
+
+        <p class="md-body-1" ng-show="$root.username">Добро пожаловать, {{ $root.username }}</p>
+
+        <md-menu ng-controller="LoginCtrl" ng-hide="$root.username">
+            <md-button aria-label="Войти" ng-click="$mdOpenMenu($event)">
+                Войти
+            </md-button>
+
+            <md-menu-content>
+                <md-content layout-gt-sm="column" layout-padding>
+                    <div ng-form name="loginForm">
+
+                        <md-input-container class="md-block flex-gt-sm">
+                            <label>Логин</label>
+                            <input name="login" ng-model="user.login" class="md-input" required
+                                   ng-disabled="loginInProgress">
+                            <div ng-messages="loginForm.login.$error" md-auto-hide="false">
+                                <div ng-message="required">
+                                    Введите логин
+                                </div>
+                            </div>
+                        </md-input-container>
+
+                        <md-input-container class="md-block flex-gt-sm" ng-disabled="loginInProgress">
+                            <label>Пароль</label>
+                            <input name="password" ng-model="user.password" type="password" class="md-input"
+                                   required
+                                   ng-disabled="loginInProgress">
+                            <div ng-messages="loginForm.password.$error" md-auto-hide="false">
+                                <div ng-message="required">
+                                    Введите пароль
+                                </div>
+                            </div>
+                        </md-input-container>
+
+                        <div layout="row" layout-sm="column" layout-margin>
+                            <md-button md-prevent-menu-close ng-click="login()" class="md-raised md-primary" flex
+                                       ng-disabled="loginForm.login.$invalid || loginForm.password.$invalid"
+                                       ng-hide="loginInProgress">
+                                Login
+                            </md-button>
+                            <div layout="row" ng-show="loginInProgress" layout-align="start center">
+                                <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+                                <h1 class="md-caption">Аутентификация</h1>
+                            </div>
+                        </div>
+                    </div>
+                </md-content>
+            </md-menu-content>
+        </md-menu>
+
+        <md-menu ng-controller="LoginCtrl" ng-show="$root.username">
+            <md-button aria-label="Выйти" ng-click="logout()" ng-disabled="logoutInProgress" >
+                <span ng-hide="logoutInProgress">Выйти</span>
+                <span flex></span>
+                <span layout="row" layout-align="center center" ng-show="logoutInProgress">
+                    <md-progress-circular md-mode="indeterminate" class="md-hue-1"></md-progress-circular>
+                    <span>Выход</span>
+                </span>
+            </md-button>
+
+        </md-menu>
+
+        <span></span>
+
     </div>
 </md-toolbar>
 

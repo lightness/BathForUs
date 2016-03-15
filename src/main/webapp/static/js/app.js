@@ -1,4 +1,4 @@
-angular.module('myApp', ['ngRoute', 'ngMaterial', 'md.data.table'])
+angular.module('myApp', ['ngRoute', 'ngMaterial', 'md.data.table', 'ngMessages'])
     .config(function($routeProvider, $mdIconProvider){
         'use strict';
 
@@ -19,4 +19,5 @@ angular.module('myApp', ['ngRoute', 'ngMaterial', 'md.data.table'])
             .when('/bathes', new View('bath/list.html', 'BathListCtrl'))
             .when('/services', new View('service/list.html', 'ServiceListCtrl'))
             .otherwise({ redirectTo: '/bathes' });
-    });
+    })
+    .run();

@@ -1,6 +1,6 @@
 angular.module('myApp')
     .controller('BathDetailDialogCtrl', function ($scope, $mdDialog, $location, BathRepository, bath) {
-        $scope.bath = bath; debugger;
+        $scope.bath = bath; 
 
         
         $scope.cancel = function() {
