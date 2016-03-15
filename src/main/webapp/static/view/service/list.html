@@ -1,7 +1,7 @@
 <div ng-controller="ServiceListCtrl">
 
     <md-button class="md-primary md-ink-ripple md-raised" ng-click="showSaveDialog({}, $event)">
-        <md-icon md-svg-src="static/img/svg/add.svg"></md-icon>
+        <md-icon md-svg-icon="add"></md-icon>
         <span>Добавить услугу</span>
     </md-button>
 
@@ -25,13 +25,13 @@
                         <md-tooltip md-direction="top">
                             Редактировать
                         </md-tooltip>
-                        <md-icon md-svg-src="static/img/svg/edit.svg"></md-icon>
+                        <md-icon md-svg-icon="edit"></md-icon>
                     </md-button>
                     <md-button class="md-fab md-mini md-primary" aria-label="Удалить" ng-click="showDeleteDialog(service, $event)">
                         <md-tooltip md-direction="top">
                             Удалить
                         </md-tooltip>
-                        <md-icon md-svg-src="static/img/svg/delete.svg"></md-icon>
+                        <md-icon md-svg-icon="delete"></md-icon>
                     </md-button>
                 </td>
             </tr>

@@ -1,5 +1,5 @@
 angular.module('myApp', ['ngRoute', 'ngMaterial', 'md.data.table'])
-    .config(function($routeProvider){
+    .config(function($routeProvider, $mdIconProvider){
         'use strict';
 
         function View(viewPath,controller) {
@@ -7,9 +7,18 @@ angular.module('myApp', ['ngRoute', 'ngMaterial', 'md.data.table'])
             this.controller = controller;
         }
 
+        $mdIconProvider
+            //.defaultIconSet('', 24)
+            //.iconSet('', '')
+            .icon('add', 'static/img/svg/add.svg', 24)
+            .icon('close', 'static/img/svg/close.svg', 24)
+            .icon('delete', 'static/img/svg/delete.svg', 24)
+            .icon('detail', 'static/img/svg/detail.svg', 24)
+            .icon('edit', 'static/img/svg/edit.svg', 24);
+
         $routeProvider
             .when('/bathes', new View('bath/list.html', 'BathListCtrl'))
             .when('/bathes/:bathId', new View('bath/detail.html', 'BathDetailCtrl'))
             .when('/services', new View('service/list.html', 'ServiceListCtrl'))
-            .otherwise({ redirectTo: '/bathes' })
+            .otherwise({ redirectTo: '/bathes' });
     });
