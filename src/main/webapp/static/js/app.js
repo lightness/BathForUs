@@ -12,7 +12,6 @@ angular.module('myApp', ['ngRoute', 'ngMaterial', 'md.data.table'])
             //.iconSet('', '')
             .icon('add', 'static/img/svg/add.svg', 24)
             .icon('close', 'static/img/svg/close.svg', 24)
-            .icon('delete', 'static/img/svg/delete.svg', 24)
             .icon('detail', 'static/img/svg/detail.svg', 24)
             .icon('edit', 'static/img/svg/edit.svg', 24);
 
