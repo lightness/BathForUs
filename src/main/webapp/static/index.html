@@ -103,17 +103,17 @@
             </md-menu-content>
         </md-menu>
 
-        <md-menu ng-controller="LoginCtrl" ng-show="$root.username">
-            <md-button aria-label="Выйти" ng-click="logout()" ng-disabled="logoutInProgress" >
-                <span ng-hide="logoutInProgress">Выйти</span>
-                <span flex></span>
-                <span layout="row" layout-align="center center" ng-show="logoutInProgress">
-                    <md-progress-circular md-mode="indeterminate" class="md-hue-1"></md-progress-circular>
-                    <span>Выход</span>
-                </span>
-            </md-button>
-
-        </md-menu>
+        <span ng-controller="LoginCtrl" ng-show="$root.username">
+            <md-menu ng-hide="logoutInProgress">
+                <md-button aria-label="Выйти" ng-click="logout()" ng-disabled="logoutInProgress">
+                    Выйти
+                </md-button>
+            </md-menu>
+            <span layout="row" layout-align="center center" ng-show="logoutInProgress">
+                <md-progress-circular md-mode="indeterminate" class="md-hue-1"></md-progress-circular>
+                <h6 class="md-caption">Выход</h6>
+            </span>
+        </span>
 
         <span></span>
 

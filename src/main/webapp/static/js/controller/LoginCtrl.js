@@ -23,7 +23,7 @@ angular.module('myApp')
                         } else {
                             reject();
                         }
-                    }, 200);
+                    }, 2000);
                 });
             }
 
@@ -46,7 +46,7 @@ angular.module('myApp')
                 return $q(function (resolve, reject) {
                     setTimeout(function () {
                         resolve();
-                    }, 200000);
+                    }, 2000);
                 });
             }
 
