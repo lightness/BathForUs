@@ -1,5 +1,5 @@
 angular.module('myApp')
-    .controller('LoginCtrl', function ($scope, $location, $q, $mdMenu, $rootScope) {
+    .controller('LoginCtrl', function ($scope, $location, $q, $mdMenu, $rootScope, $cookieStore) {
 
         $scope.loginInProgress = false;
         $scope.logoutInProgress = false;
@@ -8,7 +8,7 @@ angular.module('myApp')
             password: ''
         };
 
-        // # temp
+        // # stub
         $scope.login = function () {
             $scope.loginInProgress = true;
             var login = $scope.user.login;
@@ -29,7 +29,8 @@ angular.module('myApp')
 
             function onLoginSuccess(login) {
                 $scope.loginInProgress = false;
-                $rootScope.username = login;
+                $rootScope.username = login; debugger;
+                $cookieStore.put("username", login);
                 $mdMenu.hide();
             }
 
@@ -38,6 +39,7 @@ angular.module('myApp')
             }
         };
 
+        // # stub
         $scope.logout = function () {
             $scope.logoutInProgress = true;
             process().then(onLogoutSuccess, onLogoutFail);
@@ -53,6 +55,7 @@ angular.module('myApp')
             function onLogoutSuccess() {
                 $scope.logoutInProgress = false;
                 delete $rootScope.username;
+                $cookieStore.remove("username");
             }
 
             function onLogoutFail() {

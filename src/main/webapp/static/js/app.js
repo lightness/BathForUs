@@ -1,4 +1,4 @@
-angular.module('myApp', ['ngRoute', 'ngMaterial', 'md.data.table', 'ngMessages'])
+angular.module('myApp', ['ngRoute', 'ngMaterial', 'md.data.table', 'ngMessages', 'ngCookies'])
     .config(function($routeProvider, $mdIconProvider){
         'use strict';
 
@@ -8,8 +8,6 @@ angular.module('myApp', ['ngRoute', 'ngMaterial', 'md.data.table', 'ngMessages']
         }
 
         $mdIconProvider
-            //.defaultIconSet('', 24)
-            //.iconSet('', '')
             .icon('add', 'static/img/svg/add.svg', 24)
             .icon('close', 'static/img/svg/close.svg', 24)
             .icon('detail', 'static/img/svg/detail.svg', 24)
@@ -20,4 +18,9 @@ angular.module('myApp', ['ngRoute', 'ngMaterial', 'md.data.table', 'ngMessages']
             .when('/services', new View('service/list.html', 'ServiceListCtrl'))
             .otherwise({ redirectTo: '/bathes' });
     })
-    .run();
+    .run(function ($rootScope, $cookieStore) {
+        var username = $cookieStore.get("username");
+        if (username){
+            $rootScope.username = username;
+        }
+    });
