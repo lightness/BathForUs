@@ -1,7 +1,7 @@
 package com.bath.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -14,11 +14,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-@RequestMapping(value = "/login")
+@RequestMapping(value = "/login.json")
 public class LoginController {
 
     @Autowired
-    private AuthenticationManager authenticationManager;
+    private AuthenticationProvider authenticationProvider;
 
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
@@ -33,13 +33,15 @@ public class LoginController {
 
     @RequestMapping(method = RequestMethod.POST)
     @ResponseBody
-    public LoginStatus login(@RequestParam("username") String username,
-                             @RequestParam("password") String password) {
+    public LoginStatus login(@RequestParam("j_username") String username,
+                             @RequestParam("j_password") String password) {
 
         UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(username, password);
+        User details = new User(username, password, null);
+        token.setDetails(details);
 
         try {
-            Authentication auth = authenticationManager.authenticate(token);
+            Authentication auth = authenticationProvider.authenticate(token);
             SecurityContextHolder.getContext().setAuthentication(auth);
             return new LoginStatus(auth.isAuthenticated(), auth.getName());
         } catch (BadCredentialsException e) {
