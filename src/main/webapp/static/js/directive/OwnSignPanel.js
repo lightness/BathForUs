@@ -1,8 +1,7 @@
 angular.module('myApp')
-    .controller('LoginCtrl', function ($scope, $location, $q, $mdMenu, $rootScope, $cookieStore) {
+    .controller('ownSignPanelCtrl', function ($scope, $location, $q, $mdMenu, $rootScope, $cookieStore) {
 
-        $scope.loginInProgress = false;
-        $scope.logoutInProgress = false;
+        $scope.inProgress = false;
         $scope.user = {
             login: '',
             password: ''
@@ -10,7 +9,7 @@ angular.module('myApp')
 
         // # stub
         $scope.login = function () {
-            $scope.loginInProgress = true;
+            $scope.inProgress = true;
             var login = $scope.user.login;
             var password = $scope.user.password;
             process().then(onLoginSuccess, onLoginFail);
@@ -28,20 +27,20 @@ angular.module('myApp')
             }
 
             function onLoginSuccess(login) {
-                $scope.loginInProgress = false;
-                $rootScope.username = login; debugger;
+                $scope.inProgress = false;
+                $rootScope.username = login;
                 $cookieStore.put("username", login);
                 $mdMenu.hide();
             }
 
             function onLoginFail() {
-                $scope.loginInProgress = false;
+                $scope.inProgress = false;
             }
         };
 
         // # stub
         $scope.logout = function () {
-            $scope.logoutInProgress = true;
+            $scope.inProgress = true;
             process().then(onLogoutSuccess, onLogoutFail);
 
             function process() {
@@ -53,14 +52,21 @@ angular.module('myApp')
             }
 
             function onLogoutSuccess() {
-                $scope.logoutInProgress = false;
+                $scope.inProgress = false;
                 delete $rootScope.username;
                 $cookieStore.remove("username");
             }
 
             function onLogoutFail() {
-                $scope.logoutInProgress = false;
+                $scope.inProgress = false;
             }
         };
 
+    })
+    .directive('ownSignPanel', function () {
+        return {
+            restrict: 'E',
+            templateUrl: 'static/view/signPanel.html',
+            controller: 'ownSignPanelCtrl'
+        }
     });
