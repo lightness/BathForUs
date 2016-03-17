@@ -1,5 +1,5 @@
 angular.module('myApp')
-    .controller('BathAddDialogCtrl', function ($scope, $mdDialog, $location, BathRepository, bath) { 
+    .controller('BathAddDialogCtrl', function ($scope, $mdDialog, $location, BathRepository, bath, ToastFactory) {
         $scope.closeDialog = function() {
             $mdDialog.hide();
         };
@@ -10,7 +10,7 @@ angular.module('myApp')
             address: '',
             info: ''
         };
-        
+
         var defaultBath = angular.merge({}, emptyBath, bath);
 
         $scope.bath = defaultBath;
@@ -18,9 +18,10 @@ angular.module('myApp')
         $scope.save = function () {
             BathRepository.save($scope.bath).then(function () {
                 $mdDialog.hide();
+                ToastFactory.showToast('Информация о бане "' + $scope.bath.title + '" сохранена');
             }, function (response) {
                 $scope.bath = defaultBath;
-                $scope.error = response.status;
+                ToastFactory.showToast('В процессе сохранения произошла ошибка');
             });
         };
     });

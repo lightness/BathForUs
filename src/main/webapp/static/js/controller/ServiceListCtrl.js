@@ -1,5 +1,5 @@
 angular.module('myApp')
-    .controller('ServiceListCtrl', function ($scope, $mdDialog, ServiceRepository) {
+    .controller('ServiceListCtrl', function ($scope, $mdDialog, ServiceRepository, ToastFactory) {
 
         $scope.selected = [];
         $scope.query = {
@@ -16,7 +16,7 @@ angular.module('myApp')
                 targetEvent: $event,
                 templateUrl: 'static/view/service/addDialog.html',
                 controller: 'ServiceAddDialogCtrl',
-                locals: {service: service},
+                locals: { service: service },
                 onRemoving: function () {
                     fetchAll();
                 }
@@ -38,6 +38,9 @@ angular.module('myApp')
                     .remove(service.id)
                     .then(function () {
                         fetchAll();
+                        ToastFactory.showToast('Информация об услуге "' + $scope.service.title + '" удалена');
+                    }, function () {
+                        ToastFactory.showToast('В процессе удаления произошла ошибка');
                     });
             });
         };

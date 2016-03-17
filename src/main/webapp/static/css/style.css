@@ -1,16 +1,33 @@
+/* Logo */
+
 .md-button.logo {
     height: 4rem;
     width: 4rem;
 }
-
 .md-button.logo md-icon {
     width: 48px;
     height: 48px;
 }
-
 .logo-text {
     font-family: "Marck Script", cursive;
     font-style: italic;
     font-size: 2rem !important;
     margin-right: 25px !important;
+}
+
+/* Rate box */
+.rate-box {
+    display: inline;
+}
+.rate-box md-icon {
+    margin: 0;
+}
+.rate-box svg * {
+    fill: lightgray;
+}
+.rate-box .star-selected svg * {
+    fill: gray;
+}
+.rate-box .star-shined svg * {
+    fill: orange;
 }
