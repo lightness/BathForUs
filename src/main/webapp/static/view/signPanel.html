@@ -3,17 +3,17 @@
     <p class="md-body-1" ng-show="$root.username">Добро пожаловать, {{ $root.username }}</p>
 
     <md-menu ng-hide="$root.username">
-        <md-button aria-label="Войти" ng-click="$mdOpenMenu($event)">
+        <md-button aria-label="Войти" ng-click="openForm($mdOpenMenu, $event)">
             Войти
         </md-button>
 
         <md-menu-content>
             <md-content layout-gt-sm="column" layout-padding>
-                <div ng-form name="loginForm">
+                <form name="loginForm">
 
                     <md-input-container class="md-block flex-gt-sm">
                         <label>Логин</label>
-                        <input name="login" ng-model="user.login" class="md-input" required
+                        <input id="input-loginForm-login" name="login" ng-model="user.login" class="md-input" required
                                ng-disabled="inProgress">
                         <div ng-messages="loginForm.login.$error" md-auto-hide="false">
                             <div ng-message="required">
@@ -37,7 +37,7 @@
                     <div layout="row" layout-sm="column" layout-margin>
                         <md-button md-prevent-menu-close ng-click="login()" class="md-raised md-primary" flex
                                    ng-disabled="loginForm.login.$invalid || loginForm.password.$invalid"
-                                   ng-hide="inProgress">
+                                   ng-hide="inProgress" type="submit">
                             Войти
                         </md-button>
                         <div layout="row" ng-show="inProgress" layout-align="start center">
@@ -45,7 +45,7 @@
                             <h1 class="md-caption">Аутентификация</h1>
                         </div>
                     </div>
-                </div>
+                </form>
             </md-content>
         </md-menu-content>
     </md-menu>

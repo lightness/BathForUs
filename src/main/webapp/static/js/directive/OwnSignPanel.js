@@ -1,12 +1,31 @@
 angular.module('myApp')
-    .controller('ownSignPanelCtrl', function ($scope, $location, $q, $mdMenu, $rootScope, $cookieStore) {
+    .controller('ownSignPanelCtrl', function ($scope, $location, $q, $mdMenu, FocusFactory, $rootScope, $cookieStore) {
+
+        $scope.isFormOpen = false;
 
         $scope.inProgress = false;
+
         $scope.user = {
             login: '',
             password: ''
         };
 
+        $scope.$watch('isFormOpen', function (value) {
+            if (value){
+                FocusFactory.focus('input-loginForm-login');
+            }
+        });
+
+        $scope.openForm = function ($mdOpenMenu, $event) { 
+            $mdOpenMenu($event);
+            $scope.isFormOpen = true;
+        };
+
+        $scope.closeForm = function () {
+            $mdMenu.hide();
+            $scope.isFormOpen = false;
+        };
+        
         // # stub
         $scope.login = function () {
             $scope.inProgress = true;
@@ -30,7 +49,7 @@ angular.module('myApp')
                 $scope.inProgress = false;
                 $rootScope.username = login;
                 $cookieStore.put("username", login);
-                $mdMenu.hide();
+                $scope.closeForm();
             }
 
             function onLoginFail() {
@@ -55,6 +74,8 @@ angular.module('myApp')
                 $scope.inProgress = false;
                 delete $rootScope.username;
                 $cookieStore.remove("username");
+                $scope.user.login = '';
+                $scope.user.password = '';
             }
 
             function onLogoutFail() {
