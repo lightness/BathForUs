@@ -17,14 +17,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private AuthenticationManagerBuilder auth;
 
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                    .antMatchers("/static/**").permitAll()
-                    .antMatchers("/").permitAll()
-                    .antMatchers("/login").permitAll()
-                    .anyRequest().authenticated()
+                    .antMatchers("/**").permitAll()
+                    //.antMatchers("/static/**").permitAll()
+                    //.antMatchers("/login").permitAll()
+                    //.anyRequest().authenticated()
                 .and()
                     .csrf().disable();
     }
@@ -34,17 +35,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             AuthenticationManagerBuilder auth) throws Exception {
         auth
                 .ldapAuthentication()
-                .userDnPatterns("uid={0},ou=mathematicians")
-                .contextSource()
-                /*.root("dc=ericpol,dc=int")
-                .url("ldap://ldap-brs1.ericpol.int:389");
-                */.root("dc=example,dc=com")
-                .url("ldap://ldap.forumsys.com:389")
-                .and().passwordCompare();
+                    .userDnPatterns("uid={0}")
+                    .contextSource()
+                    .url("ldap://ldap-brs1.ericpol.int:389/ou=people,dc=ericpol,dc=int")
+                .and()
+                    .passwordCompare()
+                        .passwordAttribute("userPassword");
     }
 
     @Bean
     public AuthenticationManager authenticationManager() throws Exception {
         return auth.build();
     }
+
 }
