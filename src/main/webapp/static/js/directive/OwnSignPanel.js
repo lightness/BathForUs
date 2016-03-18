@@ -45,10 +45,12 @@ angular.module('myApp')
                 });
             }
 
-            function onLoginSuccess(login) {
+            function onLoginSuccess(username, userId) {
                 $scope.inProgress = false;
-                $rootScope.username = login;
-                $cookieStore.put("username", login);
+                $rootScope.username = username;
+                $rootScope.userId = userId;
+                $cookieStore.put("username", username);
+                $cookieStore.put("userId", userId);
                 $scope.closeForm();
             }
 
@@ -73,7 +75,9 @@ angular.module('myApp')
             function onLogoutSuccess() {
                 $scope.inProgress = false;
                 delete $rootScope.username;
+                delete $rootScope.userId;
                 $cookieStore.remove("username");
+                $cookieStore.remove("userId");
                 $scope.user.login = '';
                 $scope.user.password = '';
             }

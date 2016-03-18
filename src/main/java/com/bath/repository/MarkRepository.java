@@ -12,5 +12,8 @@ public interface MarkRepository extends JpaRepository<Mark, Long>
 {
     List<Mark> findByBathId(Long bathId);
 
+    //TODO: implement me
+    // List<Mark> findByBathIdAndUserId(Long bathId, Long userId);
+
     Mark findOneByBathIdAndServiceId(Long bathId, Long serviceId);
 }

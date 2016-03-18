@@ -32,6 +32,15 @@ public class MarkController
         return markRepository.findByBathId(bathId);
     }
 
+    //TODO: Uncomment me if available
+//    @RequestMapping(value = "bathes/{bathId}/users/{userId}/marks", method = RequestMethod.GET)
+//    public @ResponseBody Iterable<Mark> findByBathAndUser(
+//            @PathVariable Long bathId,
+//            @PathVariable Long userId)
+//    {
+//        return markRepository.findByBathIdAndUserId(bathId, userId);
+//    }
+
     @RequestMapping(value = "bathes/{bathId}/marks", method = RequestMethod.PUT)
     public @ResponseBody Mark setMark(
             @PathVariable Long bathId,
@@ -41,7 +50,6 @@ public class MarkController
         mark.setBath(bathRepository.findOne(bathId));
         mark.setService(serviceRepository.findOne(markDto.getServiceId()));
         mark.setValue(markDto.getValue());
-        mark.setComment(markDto.getComment());
         return bathService.addMark(mark);
     }
 
