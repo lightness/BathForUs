@@ -3,7 +3,6 @@ package com.bath.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -11,7 +10,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 @EnableWebSecurity
-@Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -35,12 +33,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             AuthenticationManagerBuilder auth) throws Exception {
         auth
                 .ldapAuthentication()
-                    .userDnPatterns("uid={0}")
+                    .userSearchFilter("(uid={0})").userSearchBase("ou=people")
                     .contextSource()
-                    .url("ldap://ldap-brs1.ericpol.int:389/ou=people,dc=ericpol,dc=int")
-                .and()
+                    .url("ldap://ldap-brs1.ericpol.int:389/dc=ericpol,dc=int");
+                /*.and()
                     .passwordCompare()
-                        .passwordAttribute("userPassword");
+                        .passwordAttribute("userPassword");*/
     }
 
     @Bean
