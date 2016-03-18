@@ -1,5 +1,6 @@
 package com.bath.controller;
 
+import com.bath.dto.UserCredentials;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -7,10 +8,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping(value = "/login")
@@ -32,10 +30,10 @@ public class LoginController {
 
     @RequestMapping(method = RequestMethod.POST)
     @ResponseBody
-    public LoginStatus login(@RequestParam("username") String username,
-                             @RequestParam("password") String password) {
+    public LoginStatus login(@RequestBody UserCredentials credentials) {
 
-        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(username, password);
+        UsernamePasswordAuthenticationToken token =
+                new UsernamePasswordAuthenticationToken(credentials.getUsername(), credentials.getPassword());
         try {
 
             Authentication auth = authenticationManager.authenticate(token);
