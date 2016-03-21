@@ -1,4 +1,4 @@
-angular.module('myApp', ['ngRoute', 'ngMaterial', 'md.data.table', 'ngMessages', 'ngCookies'])
+angular.module('myApp', ['ngRoute', 'ngMaterial', 'md.data.table', 'ngMessages', 'ngCookies', 'textAngular'])
     .config(function($routeProvider, $mdIconProvider){
         'use strict';
 

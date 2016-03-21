@@ -84,6 +84,7 @@
                                         <md-input-container class="md-block">
                                             <label>Новый комментарий</label>
                                             <textarea ng-model="newComment"></textarea>
+                                            <div text-angular="text-angular" name="comment" ng-model="newComment" ta-disabled='disabled'></div>
                                         </md-input-container>
                                     </md-card-content>
 
@@ -104,9 +105,7 @@
                                         </md-card-title-text>
                                     </md-card-title>
                                     <md-card-content>
-                                        <p style="word-wrap: break-word;text-align: justify;text-indent: 25px;">
-                                            {{comment.text}}
-                                        </p>
+                                        <div ta-bind="text" ng-model="comment.text" ta-readonly='disabled' style="word-wrap: break-word;text-align: justify;text-indent: 25px;"></div>
                                     </md-card-content>
                                 </md-card>
                             </div>

@@ -50,7 +50,7 @@ angular.module('myApp')
         $scope.cancel = function () {
             $mdDialog.cancel();
         };
-        $scope.answer = function (answer) {
+        $scope.answer = function(answer) {
             $mdDialog.hide(answer);                                     // !!!!!!!!!
         };
 
