@@ -18,8 +18,8 @@ public class Mark extends AbstractPersistable<Long>
     @Column
     private Long value;
 
-    @Column
-    private String comment;
+    @ManyToOne
+    private User user;
 
 
     public Bath getBath()
@@ -52,14 +52,12 @@ public class Mark extends AbstractPersistable<Long>
         this.value = value;
     }
 
-    public String getComment()
-    {
-        return comment;
+    public User getUser() {
+        return user;
     }
 
-    public void setComment(String comment)
-    {
-        this.comment = comment;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public void setId(Long id)

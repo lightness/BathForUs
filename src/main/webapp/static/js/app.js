@@ -1,4 +1,4 @@
-angular.module('myApp', ['ngRoute', 'ngMaterial', 'md.data.table', 'ngMessages', 'ngCookies'])
+angular.module('myApp', ['ngRoute', 'ngMaterial', 'md.data.table', 'ngMessages', 'ngCookies', 'textAngular'])
     .config(function($routeProvider, $mdIconProvider){
         'use strict';
 
@@ -9,6 +9,7 @@ angular.module('myApp', ['ngRoute', 'ngMaterial', 'md.data.table', 'ngMessages',
             .icon('edit', 'static/img/svg/edit.svg', 24)
             .icon('star', 'static/img/svg/star.svg', 24)
             .icon('broom', 'static/img/svg/broom.svg', 48);
+
 
         function View(viewPath,controller) {
             this.templateUrl = 'static/view/' + viewPath;
@@ -22,7 +23,9 @@ angular.module('myApp', ['ngRoute', 'ngMaterial', 'md.data.table', 'ngMessages',
     })
     .run(function ($rootScope, $cookieStore) {
         var username = $cookieStore.get("username");
-        if (username){
+        var userId = $cookieStore.get("userId");
+        if (username && userId){
             $rootScope.username = username;
+            $rootScope.userId = userId;
         }
     });

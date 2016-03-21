@@ -29,7 +29,6 @@ public class BathServiceImpl implements BathService
         if (anotherMark != null)
         {
             anotherMark.setValue(mark.getValue());
-            anotherMark.setComment(mark.getComment());
             markRepository.save(anotherMark);
             mark = anotherMark;
         }
