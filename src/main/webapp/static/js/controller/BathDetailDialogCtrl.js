@@ -1,5 +1,5 @@
 angular.module('myApp')
-    .controller('BathDetailDialogCtrl', function ($scope, $mdDialog, $location, BathRepository, bath) {
+    .controller('BathDetailDialogCtrl', function ($scope, $mdDialog, $location, BathRepository, ServiceRepository, bath, $q, $rootScope, $filter) {
         $scope.bath = bath;
 
         $scope.data = [];
