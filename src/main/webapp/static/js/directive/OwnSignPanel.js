@@ -45,7 +45,7 @@ angular.module('myApp')
                 });
             }
 
-            function onLoginSuccess(username, userId) {
+            function onLoginSuccess(username, userId) { userId = 5; ////////////////////////
                 $scope.inProgress = false;
                 $rootScope.username = username;
                 $rootScope.userId = userId;

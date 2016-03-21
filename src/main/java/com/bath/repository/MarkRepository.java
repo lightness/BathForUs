@@ -23,4 +23,7 @@ public interface MarkRepository extends JpaRepository<Mark, Long>
 
     @Query(value = "select AVG(M.value) from mark M where M.bath_id = :bathId and M.user_id = :userId group by M.user_id", nativeQuery = true)
     Double findAvgByBathIdAndUserId(@Param("bathId") Long bathId, @Param("userId") Long userId);
+
+    @Query(value = "select AVG(M.value) from mark M where M.bath_id = :bathId and M.service_id = :serviceId group by M.service_id", nativeQuery = true)
+    Double findAvgByBathIdAndServiceId(@Param("bathId") Long bathId, @Param("serviceId") Long serviceId);
 }

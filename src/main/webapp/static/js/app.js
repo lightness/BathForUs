@@ -22,7 +22,9 @@ angular.module('myApp', ['ngRoute', 'ngMaterial', 'md.data.table', 'ngMessages',
     })
     .run(function ($rootScope, $cookieStore) {
         var username = $cookieStore.get("username");
-        if (username){
+        var userId = $cookieStore.get("userId");
+        if (username && userId){
             $rootScope.username = username;
+            $rootScope.userId = userId;
         }
     });

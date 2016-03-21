@@ -1,17 +1,27 @@
 angular.module('myApp')
-    .controller('BathDetailDialogCtrl', function ($scope, $mdDialog, $location, BathRepository, ServiceRepository, bath, $q, $rootScope) {
+    .controller('BathDetailDialogCtrl', function ($scope, $mdDialog, $location, BathRepository, ServiceRepository, bath, $q, $rootScope, $filter) {
         $scope.bath = bath;
 
         $scope.data = [];
 
+        BathRepository
+            .getAverageMark(bath.id)
+            .then(function (response) {
+                $scope.bathAverageMark = $filter('number')(response.data, 2);
+            });
+
+        BathRepository
+            .getAverageMarkByUser(bath.id, $rootScope.userId)
+            .then(function (response) {
+                $scope.myAverageMark = $filter('number')(response.data, 2);
+            });
+
         $q.all([
-            BathRepository.getMarks(bath.id),
             ServiceRepository.getAll(),
             BathRepository.getMarksByUser(bath.id, $rootScope.userId)
         ]).then(function (data) {
-            var averageMarks = data[0];
-            var services = data[1];
-            var myMarks = data[2];
+            var services = data[0];
+            var myMarks = data[1];
 
             angular.forEach(services.data.content, function (value, key) {
                 var obj = {
@@ -19,18 +29,18 @@ angular.module('myApp')
                     serviceTitle: value.title
                 };
 
-                angular.forEach(averageMarks.data, function (v, k) {
-                    if (v.service.id == value.id) {
-                        obj.averageValue = v.value;
-                    }
-                });
-                
                 angular.forEach(myMarks.data, function (v, k) {
                     if (v.service.id == value.id) {
                         obj.myValue = v.value;
                         obj.myMarkId = v.id;
                     }
                 });
+
+                BathRepository
+                    .getAverageMarkByService(bath.id, value.id)
+                    .then(function (response) {
+                        obj.averageValue = $filter('number')(response.data, 2);
+                    });
 
                 $scope.data.push(obj);
             });

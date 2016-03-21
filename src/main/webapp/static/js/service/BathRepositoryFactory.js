@@ -22,6 +22,15 @@ angular.module('myApp')
             },
             getMarksByUser: function(id, userId) {
                 return $http.get(url + id + "/users/" + userId + "/marks");
+            },
+            getAverageMarkByUser: function(id, userId) {
+                return $http.get(url + id + "/users/" + userId + "/marks/average");
+            },
+            getAverageMarkByService: function (id, serviceId) {
+                return $http.get(url + id + "/services/" + serviceId + "/marks/average");
+            },
+            getAverageMark: function(id) {
+                return $http.get(url + id + "/marks/average");
             }
         }
     }]);

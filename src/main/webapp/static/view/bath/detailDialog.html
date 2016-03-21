@@ -26,22 +26,36 @@
                         <md-tab label="Общие">
                             <md-content class="md-padding" layout="column">
                                 <p layout="row">
-                                    <span class="md-headline">Общая оценка: {{ bath.averageMark }}</span>
+                                    <span class="md-headline">Средняя оценка: {{ bathAverageMark }}</span>
                                     <span flex></span>
-                                    <own-rate-box value="bath.averageMark"></own-rate-box>
+                                    <own-rate-box value="bathAverageMark"></own-rate-box>
                                 </p>
-                                <p layout="row" layout-align="space-between center" ng-repeat="service in data">
+                                <span layout="row" layout-align="space-between center" ng-repeat="service in data">
                                     <span class="md-subhead">
                                         {{ service.serviceTitle }}:
                                         <span ng-show="service.averageValue">{{ service.averageValue }}</span>
                                     </span>
                                     <span flex></span>
                                     <own-rate-box value="service.averageValue"></own-rate-box>
-                                </p>
+                                </span>
                             </md-content>
                         </md-tab>
                         <md-tab label="Ваши" ng-enabled="$root.username">
-
+                            <md-content class="md-padding" layout="column">
+                                <p layout="row">
+                                    <span class="md-headline">Средняя оценка: {{ myAverageMark }}</span>
+                                    <span flex></span>
+                                    <own-rate-box value="myAverageMark"></own-rate-box>
+                                </p>
+                                <span layout="row" layout-align="space-between center" ng-repeat="service in data">
+                                    <span class="md-subhead">
+                                        {{ service.serviceTitle }}:
+                                        <span ng-show="service.myValue">{{ service.myValue }}</span>
+                                    </span>
+                                    <span flex></span>
+                                    <own-rate-box value="service.myValue"></own-rate-box>
+                                </span>
+                            </md-content>
                         </md-tab>
                     </md-tabs>
 

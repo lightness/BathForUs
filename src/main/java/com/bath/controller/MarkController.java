@@ -25,6 +25,25 @@ public class MarkController
     private BathService bathService;
 
 
+    @RequestMapping(value = "marks/{markId}", method = RequestMethod.DELETE)
+    public void setMark(
+            @PathVariable Long markId)
+    {
+        markRepository.delete(markId);
+    }
+
+    @RequestMapping(value = "bathes/{bathId}/marks", method = RequestMethod.PUT)
+    public @ResponseBody Mark setMark(
+            @PathVariable Long bathId,
+            @RequestBody MarkDto markDto)
+    {
+        Mark mark = new Mark();
+        mark.setBath(bathRepository.findOne(bathId));
+        mark.setService(serviceRepository.findOne(markDto.getServiceId()));
+        mark.setValue(markDto.getValue());
+        return bathService.addMark(mark);
+    }
+
     @RequestMapping(value = "bathes/{bathId}/marks", method = RequestMethod.GET)
     public @ResponseBody Iterable<Mark> findByBath(
             @PathVariable Long bathId)
@@ -48,30 +67,21 @@ public class MarkController
     }
 
     @RequestMapping(value = "bathes/{bathId}/users/{userId}/marks/average", method = RequestMethod.GET)
-    public @ResponseBody Double findAvgByBathAndUser(
+    public @ResponseBody Double findAverageByBathAndUser(
             @PathVariable Long bathId,
             @PathVariable Long userId)
     {
         return markRepository.findAvgByBathIdAndUserId(bathId, userId);
     }
 
-    @RequestMapping(value = "bathes/{bathId}/marks", method = RequestMethod.PUT)
-    public @ResponseBody Mark setMark(
+    @RequestMapping(value = "bathes/{bathId}/services/{serviceId}/marks/average", method = RequestMethod.GET)
+    public @ResponseBody Double findAverageByBathAndService(
             @PathVariable Long bathId,
-            @RequestBody MarkDto markDto)
+            @PathVariable Long serviceId)
     {
-        Mark mark = new Mark();
-        mark.setBath(bathRepository.findOne(bathId));
-        mark.setService(serviceRepository.findOne(markDto.getServiceId()));
-        mark.setValue(markDto.getValue());
-        return bathService.addMark(mark);
+        return markRepository.findAvgByBathIdAndServiceId(bathId, serviceId);
     }
 
-    @RequestMapping(value = "marks/{markId}", method = RequestMethod.DELETE)
-    public void setMark(
-            @PathVariable Long markId)
-    {
-        markRepository.delete(markId);
-    }
+
 
 }
