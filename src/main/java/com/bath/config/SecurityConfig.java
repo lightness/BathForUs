@@ -21,11 +21,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/**").permitAll()
-                //.antMatchers("/static/**").permitAll()
-                //.anyRequest().authenticated()
+                    .antMatchers("/**").permitAll()
+                    //.antMatchers("/static/**").permitAll()
+                    //.anyRequest().authenticated()
                 .and()
-                .csrf().disable()
+                    .csrf().disable()
                 .logout();
     }
 
@@ -35,9 +35,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth
                 .ldapAuthentication()
                 .ldapAuthoritiesPopulator(ldapAuthoritiesPopulator())
-                .userSearchFilter("(uid={0})").userSearchBase("ou=people")
-                .contextSource()
-                .url("ldap://ldap-brs1.ericpol.int:389/dc=ericpol,dc=int");
+                    .userSearchFilter("(uid={0})").userSearchBase("ou=people")
+                    .contextSource()
+                    .url("ldap://ldap-brs1.ericpol.int:389/dc=ericpol,dc=int");
 
                 /* Uncomment the code below for testing purposes */
                 /* Available users are: boyle, cuire, einstein, euclid,
