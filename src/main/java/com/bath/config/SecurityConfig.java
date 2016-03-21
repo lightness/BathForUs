@@ -22,10 +22,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                     .antMatchers("/**").permitAll()
                     //.antMatchers("/static/**").permitAll()
-                    //.antMatchers("/login").permitAll()
+                    //.antMatchers("/logout").permitAll()
                     //.anyRequest().authenticated()
                 .and()
-                    .csrf().disable();
+                    .csrf().disable()
+                .logout();
+                //.logout().logoutUrl("/logout").permitAll();
     }
 
     @Autowired
