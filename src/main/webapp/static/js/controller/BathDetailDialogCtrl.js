@@ -11,15 +11,15 @@ angular.module('myApp')
         };
 
         $scope.comments = [{
-            'text': 'comment33пукпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмр',
-            'firstName': 'Vova',
-            'lastName': 'Oleshko',
-            'iconPath': 'static/img/123.png'
-        },
+                'text': '<p>comment33пукпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмр</p>',
+                'firstName': 'Vova',
+                'lastName': 'Oleshko',
+                'iconPath': 'static/img/123.png'
+            },
             {'text': 'comment123', 'firstName': 'Vova', 'lastName': 'Oleshko', 'iconPath': 'static/img/123.png'},
-            {'text': 'comment3', 'firstName': 'Vova', 'lastName': 'Oleshko', 'iconPath': 'static/img/123.png'},
-            {'text': 'comment3', 'firstName': 'Vova', 'lastName': 'Oleshko', 'iconPath': 'static/img/123.png'},
-            {'text': 'comment3', 'firstName': 'Vova', 'lastName': 'Oleshko', 'iconPath': 'static/img/123.png'}];
+            {'text': '<h2>Hello</h2><h3>Hello</h3>', 'firstName': 'Vova', 'lastName': 'Oleshko', 'iconPath': 'static/img/123.png'},
+            {'text': '<h1>Hello</h1><h4>Hello</h4>', 'firstName': 'Vova', 'lastName': 'Oleshko', 'iconPath': 'static/img/123.png'},
+            {'text': '<div>Hello</div><h3>Hello</h3>', 'firstName': 'Vova', 'lastName': 'Oleshko', 'iconPath': 'static/img/123.png'}];
 
         $scope.add = function () {
             $scope.comments.unshift({
@@ -29,7 +29,6 @@ angular.module('myApp')
                 'iconPath': 'static/img/123.png'
             });
             $scope.newComment = "";
-
         };
 
 
