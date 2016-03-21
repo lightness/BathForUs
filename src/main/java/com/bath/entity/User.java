@@ -16,6 +16,14 @@ public class User extends AbstractPersistable<Long> {
     @Column(nullable = false)
     private String uid;
 
+    public User() {
+        super();
+    }
+
+    public User(String uid) {
+        this.uid = uid;
+    }
+
     public String getUid() {
         return uid;
     }
