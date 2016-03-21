@@ -10,6 +10,7 @@ angular.module('myApp', ['ngRoute', 'ngMaterial', 'md.data.table', 'ngMessages',
             .icon('star', 'static/img/svg/star.svg', 24)
             .icon('broom', 'static/img/svg/broom.svg', 48);
 
+
         function View(viewPath,controller) {
             this.templateUrl = 'static/view/' + viewPath;
             this.controller = controller;
