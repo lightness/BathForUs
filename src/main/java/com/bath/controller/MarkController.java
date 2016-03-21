@@ -32,14 +32,28 @@ public class MarkController
         return markRepository.findByBathId(bathId);
     }
 
-    //TODO: Uncomment me if available
-//    @RequestMapping(value = "bathes/{bathId}/users/{userId}/marks", method = RequestMethod.GET)
-//    public @ResponseBody Iterable<Mark> findByBathAndUser(
-//            @PathVariable Long bathId,
-//            @PathVariable Long userId)
-//    {
-//        return markRepository.findByBathIdAndUserId(bathId, userId);
-//    }
+    @RequestMapping(value = "bathes/{bathId}/marks/average", method = RequestMethod.GET)
+    public @ResponseBody Double findAverageByBath(
+            @PathVariable Long bathId)
+    {
+        return markRepository.findAvgByBathId(bathId);
+    }
+
+    @RequestMapping(value = "bathes/{bathId}/users/{userId}/marks", method = RequestMethod.GET)
+    public @ResponseBody Iterable<Mark> findByBathAndUser(
+            @PathVariable Long bathId,
+            @PathVariable Long userId)
+    {
+        return markRepository.findByBathIdAndUserId(bathId, userId);
+    }
+
+    @RequestMapping(value = "bathes/{bathId}/users/{userId}/marks/average", method = RequestMethod.GET)
+    public @ResponseBody Double findAvgByBathAndUser(
+            @PathVariable Long bathId,
+            @PathVariable Long userId)
+    {
+        return markRepository.findAvgByBathIdAndUserId(bathId, userId);
+    }
 
     @RequestMapping(value = "bathes/{bathId}/marks", method = RequestMethod.PUT)
     public @ResponseBody Mark setMark(

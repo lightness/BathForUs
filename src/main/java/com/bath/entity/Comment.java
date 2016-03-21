@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import java.util.Calendar;
 
 @Entity
 @Table
@@ -16,6 +17,12 @@ public class Comment extends AbstractPersistable<Long> {
 
     @ManyToOne
     private User user;
+
+    @ManyToOne
+    private Bath bath;
+
+    @Column
+    private Calendar date;
 
 
     public String getText() {
@@ -32,5 +39,21 @@ public class Comment extends AbstractPersistable<Long> {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Bath getBath() {
+        return bath;
+    }
+
+    public void setBath(Bath bath) {
+        this.bath = bath;
+    }
+
+    public Calendar getDate() {
+        return date;
+    }
+
+    public void setDate(Calendar date) {
+        this.date = date;
     }
 }
