@@ -21,7 +21,6 @@
                     </md-content>
                 </md-tab>
                 <md-tab label="Оценки">
-
                     <md-tabs md-dynamic-height md-border-bottom>
                         <md-tab label="Общие">
                             <md-content class="md-padding" layout="column">
@@ -58,7 +57,6 @@
                             </md-content>
                         </md-tab>
                     </md-tabs>
-
                 </md-tab>
                 <md-tab label="Фото">
                     <md-content class="md-padding">
@@ -71,11 +69,42 @@
                 </md-tab>
                 <md-tab label="Комментарии">
                     <md-content class="md-padding">
-                        <h1 class="md-display-1">Tab 4</h1>
-                        <p>Integer turpis erat, porttitor vitae mi faucibus, laoreet interdum tellus. Curabitur posuere
-                            molestie dictum. Morbi eget congue risus, quis rhoncus quam. Suspendisse vitae hendrerit
-                            erat, at posuere mi. Cras eu fermentum nunc. Sed id ante eu orci commodo volutpat non ac
-                            est. Praesent ligula diam, congue eu enim scelerisque, finibus commodo lectus.</p>
+                        <div>
+                            <div>
+                                <md-card>
+                                    <md-card-title>
+                                        <md-card-title-media>
+                                            <div class="md-media-sm card-media"><img src="static/img/123.png"></div>
+                                        </md-card-title-media>
+                                        <md-card-title-text>
+                                            <span class="md-headline" style="padding-left: 20px;">Имя Отчество</span>
+                                        </md-card-title-text>
+                                    </md-card-title>
+                                    <md-card-content>
+                                        <div text-angular="text-angular" name="comment" ng-model="newComment" ta-disabled='disabled'></div>
+                                    </md-card-content>
+                                    <md-card-actions layout="row" layout-align="end center">
+                                        <md-button ng-click="add()">Добавить комментрий</md-button>
+                                    </md-card-actions>
+                                </md-card>
+                            </div>
+
+                            <div ng-repeat="comment in comments" layout="column">
+                                <md-card>
+                                    <md-card-title>
+                                        <md-card-title-media>
+                                            <div class="md-media-sm card-media"><img src="{{comment.iconPath}}"></div>
+                                        </md-card-title-media>
+                                        <md-card-title-text>
+                                            <span class="md-subhead" style="padding-left: 20px;">{{comment.firstName}} {{comment.lastName}}</span>
+                                        </md-card-title-text>
+                                    </md-card-title>
+                                    <md-card-content>
+                                        <div ta-bind="text" ng-model="comment.text" ta-readonly='disabled' style="word-wrap: break-word;text-align: justify;text-indent: 25px;"></div>
+                                    </md-card-content>
+                                </md-card>
+                            </div>
+                        </div>
                     </md-content>
                 </md-tab>
             </md-tabs>
