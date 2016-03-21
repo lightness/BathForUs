@@ -4,6 +4,7 @@ angular.module('myApp')
 
         $scope.data = [];
 
+
         BathRepository
             .getAverageMark(bath.id)
             .then(function (response) {
