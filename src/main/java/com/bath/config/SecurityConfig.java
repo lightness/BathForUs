@@ -35,12 +35,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth
                 .ldapAuthentication()
                 .ldapAuthoritiesPopulator(ldapAuthoritiesPopulator())
-                    /*.userSearchFilter("(uid={0})").userSearchBase("ou=people")
+                    .userSearchFilter("(uid={0})").userSearchBase("ou=people")
                     .contextSource()
-                    .url("ldap://ldap-brs1.ericpol.int:389/dc=ericpol,dc=int");*/
-                .userSearchFilter("(uid={0})")
-                .contextSource()
-                .url("ldap://ldap.forumsys.com:389/dc=example,dc=com");
+                    .url("ldap://ldap-brs1.ericpol.int:389/dc=ericpol,dc=int");
+
+                /* Uncomment the code below for testing purposes */
+                /* Available users are: boyle, cuire, einstein, euclid,
+                                        euler, galileo, gauss, newton,
+                                        nobel, pasteur, riemann, tesla
+                   The password for all test users is "password"
+                 */
+                /*
+                    .userSearchFilter("(uid={0})")
+                    .contextSource()
+                    .url("ldap://ldap.forumsys.com:389/dc=example,dc=com");
+                */
     }
 
     @Bean
