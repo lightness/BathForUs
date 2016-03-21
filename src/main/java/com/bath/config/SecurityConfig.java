@@ -1,6 +1,7 @@
 package com.bath.config;
 
 
+import com.bath.util.LdapUserAuthoritiesPopulator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -22,12 +23,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                     .antMatchers("/**").permitAll()
                     //.antMatchers("/static/**").permitAll()
-                    //.antMatchers("/logout").permitAll()
                     //.anyRequest().authenticated()
                 .and()
                     .csrf().disable()
                 .logout();
-                //.logout().logoutUrl("/logout").permitAll();
     }
 
     @Autowired
@@ -35,17 +34,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             AuthenticationManagerBuilder auth) throws Exception {
         auth
                 .ldapAuthentication()
-                    .userSearchFilter("(uid={0})").userSearchBase("ou=people")
+                .ldapAuthoritiesPopulator(ldapAuthoritiesPopulator())
+                    /*.userSearchFilter("(uid={0})").userSearchBase("ou=people")
                     .contextSource()
-                    .url("ldap://ldap-brs1.ericpol.int:389/dc=ericpol,dc=int");
-                /*.and()
-                    .passwordCompare()
-                        .passwordAttribute("userPassword");*/
+                    .url("ldap://ldap-brs1.ericpol.int:389/dc=ericpol,dc=int");*/
+                .userSearchFilter("(uid={0})")
+                .contextSource()
+                .url("ldap://ldap.forumsys.com:389/dc=example,dc=com");
     }
 
     @Bean
     public AuthenticationManager authenticationManager() throws Exception {
         return auth.build();
+    }
+
+    @Bean
+    public LdapUserAuthoritiesPopulator ldapAuthoritiesPopulator() {
+        return new LdapUserAuthoritiesPopulator();
     }
 
 }
