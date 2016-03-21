@@ -81,13 +81,8 @@
                                         </md-card-title-text>
                                     </md-card-title>
                                     <md-card-content>
-                                        <md-input-container class="md-block">
-                                            <label>Новый комментарий</label>
-                                            <textarea ng-model="newComment"></textarea>
-                                            <div text-angular="text-angular" name="comment" ng-model="newComment" ta-disabled='disabled'></div>
-                                        </md-input-container>
+                                        <div text-angular="text-angular" name="comment" ng-model="newComment" ta-disabled='disabled'></div>
                                     </md-card-content>
-
                                     <md-card-actions layout="row" layout-align="end center">
                                         <md-button ng-click="add()">Добавить комментрий</md-button>
                                     </md-card-actions>
@@ -110,7 +105,6 @@
                                 </md-card>
                             </div>
                         </div>
-
                     </md-content>
                 </md-tab>
             </md-tabs>
