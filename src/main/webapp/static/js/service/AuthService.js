@@ -1,5 +1,5 @@
 angular.module('myApp')
-    .factory('AuthService', function ($rootScope, LoginRestService, ToastFactory) {
+    .factory('AuthService', function ($rootScope, LoginRestService, ToastFactory, $q) {
         function processUserActivation(data) {
             $rootScope.user = {};
             if (data.username && data.username != "anonymousUser") {
@@ -33,7 +33,8 @@ angular.module('myApp')
                 .getStatus()
                 .then(function (response) {
                     processUserActivation(response.data);
-                }, function () {
+                })
+                .catch(function () {
                     ToastFactory.showToast('Ошибка в процессе аутентификации');
                 });
         }
@@ -43,8 +44,15 @@ angular.module('myApp')
                 .login(credentials)
                 .then(function (response) {
                     processUserActivation(response.data);
-                }, function () {
-                    ToastFactory.showToast('Ошибка в процессе аутентификации');
+                })
+                .catch(function (error) {
+                    if (error.status == 403) {
+                        ToastFactory.showToast("Неверный логин или пароль");
+                        return $q.reject();
+                    } else { debugger;
+                        ToastFactory.showToast('Ошибка в процессе аутентификации');
+                        return "Unexpected error";
+                    }
                 });
         }
 

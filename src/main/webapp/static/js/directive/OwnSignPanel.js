@@ -11,12 +11,12 @@ angular.module('myApp')
         };
 
         $scope.$watch('isFormOpen', function (value) {
-            if (value){
+            if (value) {
                 FocusFactory.focus('input-loginForm-login');
             }
         });
 
-        $scope.openForm = function ($mdOpenMenu, $event) { 
+        $scope.openForm = function ($mdOpenMenu, $event) {
             $mdOpenMenu($event);
             $scope.isFormOpen = true;
         };
@@ -31,8 +31,9 @@ angular.module('myApp')
             var login = $scope.user.login;
             var password = $scope.user.password;
             AuthService
-                .login({ username: login , password: password })
-                .then(onLoginSuccess, onLoginFail);
+                .login({username: login, password: password})
+                .then(onLoginSuccess)
+                .catch(onLoginFail);
 
             function onLoginSuccess() {
                 $scope.inProgress = false;
@@ -48,7 +49,8 @@ angular.module('myApp')
             $scope.inProgress = true;
             AuthService
                 .logout()
-                .then(onLogoutSuccess, onLogoutFail);
+                .then(onLogoutSuccess)
+                .catch(onLogoutFail);
 
             function onLogoutSuccess() {
                 $scope.inProgress = false;
