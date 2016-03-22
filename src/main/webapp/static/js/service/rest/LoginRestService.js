@@ -8,7 +8,7 @@ angular.module('myApp')
                 return $http.post('login/', credentials);
             },
             logout:  function () {
-                return $http.post('logout/');
+                return $http.post('logout');
             }
         }
     });
