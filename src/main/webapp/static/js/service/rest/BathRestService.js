@@ -14,17 +14,14 @@ angular.module('myApp')
             remove: function (id) {
                 return $http.delete(url + id);
             },
-            getMarks: function (id) {
-                return $http.get(url + id + "/marks");
-            },
             putMark: function (id, mark) {
                 return $http.put(url + id + "/marks", mark);
             },
-            getMarksByUser: function(id, userId) {
-                return $http.get(url + id + "/users/" + userId + "/marks");
+            getMyMarks: function(id) {
+                return $http.get(url + id + "/marks/my");
             },
-            getAverageMarkByUser: function(id, userId) {
-                return $http.get(url + id + "/users/" + userId + "/marks/average");
+            getMyAverageMark: function(id) {
+                return $http.get(url + id + "/marks/my/average");
             },
             getAverageMarkByService: function (id, serviceId) {
                 return $http.get(url + id + "/services/" + serviceId + "/marks/average");

@@ -32,8 +32,7 @@ public class LoginController {
 
     @RequestMapping(method = RequestMethod.GET)
     public @ResponseBody LoginStatus getStatus() {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        return new LoginStatus(auth.getName(), auth.getAuthorities());
+        return new LoginStatus(userService.getCurrentUser().getUid(), userService.getCurrentUserRoles());
     }
 
     @RequestMapping(method = RequestMethod.POST)

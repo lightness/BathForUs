@@ -11,25 +11,25 @@ angular.module('myApp')
             });
 
         BathRestService
-            .getAverageMarkByUser(bath.id, $rootScope.userId)
+            .getMyAverageMark(bath.id)
             .then(function (response) {
                 $scope.myAverageMark = $filter('number')(response.data, 2);
             });
 
         $q.all([
             ServiceRestService.getAll(),
-            BathRestService.getMarksByUser(bath.id, $rootScope.userId)
+            BathRestService.getMyMarks(bath.id)
         ]).then(function (data) {
             var services = data[0];
             var myMarks = data[1];
 
-            angular.forEach(services.data.content, function (value, key) {
+            angular.forEach(services.data.content, function (value) {
                 var obj = {
                     serviceId: value.id,
                     serviceTitle: value.title
                 };
 
-                angular.forEach(myMarks.data, function (v, k) {
+                angular.forEach(myMarks.data, function (v) {
                     if (v.service.id == value.id) {
                         obj.myValue = v.value;
                         obj.myMarkId = v.id;

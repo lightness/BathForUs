@@ -3,7 +3,13 @@ package com.bath.service;
 import com.bath.entity.User;
 import com.bath.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -18,17 +24,30 @@ public class UserServiceImpl implements UserService {
             return false;
 
         User user = userRepository.findByUid(username);
-        if (user != null && user.getUid().equals(username))
-            return true;
-        else
-            if (userRepository.save(new User(username)) != null)
-                return true;
+        if (user == null)
+            userRepository.save(new User(username));
 
-        return false;
+        return true;
     }
 
     @Override
     public boolean isAdmin(String username) {
         return false;
+    }
+
+    @Override
+    public User getCurrentUser() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        return userRepository.findByUid(auth.getName());
+    }
+
+    @Override
+    public List<String> getCurrentUserRoles() {
+        List<String> roles = new ArrayList<String>();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        for(GrantedAuthority grantedAuthority: auth.getAuthorities()){
+            roles.add(grantedAuthority.getAuthority());
+        }
+        return roles;
     }
 }

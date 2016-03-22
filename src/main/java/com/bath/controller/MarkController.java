@@ -5,15 +5,20 @@ import com.bath.entity.Mark;
 import com.bath.repository.BathRepository;
 import com.bath.repository.MarkRepository;
 import com.bath.repository.ServiceRepository;
+import com.bath.service.MarkService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpSession;
 
 
 @Controller
 @RequestMapping(value = "/")
 public class MarkController
 {
+    @Autowired
+    private MarkService markService;
     @Autowired
     private MarkRepository markRepository;
     @Autowired
@@ -23,7 +28,7 @@ public class MarkController
 
 
     @RequestMapping(value = "marks/{markId}", method = RequestMethod.DELETE)
-    public void setMark(
+    public void deleteMark(
             @PathVariable Long markId)
     {
         markRepository.delete(markId);
@@ -41,38 +46,29 @@ public class MarkController
         return markRepository.save(mark);
     }
 
-    @RequestMapping(value = "bathes/{bathId}/marks", method = RequestMethod.GET)
-    public @ResponseBody Iterable<Mark> findByBath(
-            @PathVariable Long bathId)
-    {
-        return markRepository.findByBathId(bathId);
-    }
-
     @RequestMapping(value = "bathes/{bathId}/marks/average", method = RequestMethod.GET)
-    public @ResponseBody Double findAverageByBath(
+    public @ResponseBody Double findAverageMarkByBath(
             @PathVariable Long bathId)
     {
         return markRepository.findAvgByBathId(bathId);
     }
 
-    @RequestMapping(value = "bathes/{bathId}/users/{userId}/marks", method = RequestMethod.GET)
-    public @ResponseBody Iterable<Mark> findByBathAndUser(
-            @PathVariable Long bathId,
-            @PathVariable Long userId)
+    @RequestMapping(value = "bathes/{bathId}/marks/my", method = RequestMethod.GET)
+    public @ResponseBody Iterable<Mark> findUserMarksByBath(
+            @PathVariable Long bathId)
     {
-        return markRepository.findByBathIdAndUserId(bathId, userId);
+        return markService.findUserMarksByBathId(bathId);
     }
 
-    @RequestMapping(value = "bathes/{bathId}/users/{userId}/marks/average", method = RequestMethod.GET)
-    public @ResponseBody Double findAverageByBathAndUser(
-            @PathVariable Long bathId,
-            @PathVariable Long userId)
+    @RequestMapping(value = "bathes/{bathId}/marks/my/average", method = RequestMethod.GET)
+    public @ResponseBody Double findUserAverageMarkByBath(
+            @PathVariable Long bathId)
     {
-        return markRepository.findAvgByBathIdAndUserId(bathId, userId);
+        return markService.findUserAverageMarkByBathId(bathId);
     }
 
     @RequestMapping(value = "bathes/{bathId}/services/{serviceId}/marks/average", method = RequestMethod.GET)
-    public @ResponseBody Double findAverageByBathAndService(
+    public @ResponseBody Double findAverageMarkByBathAndService(
             @PathVariable Long bathId,
             @PathVariable Long serviceId)
     {
