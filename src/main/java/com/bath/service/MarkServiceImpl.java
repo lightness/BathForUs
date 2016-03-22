@@ -3,7 +3,9 @@ package com.bath.service;
 import com.bath.entity.Mark;
 import com.bath.repository.MarkRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class MarkServiceImpl implements MarkService {
 
     @Autowired

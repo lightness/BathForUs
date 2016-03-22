@@ -9,6 +9,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -42,12 +43,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<String> getCurrentUserRoles() {
-        List<String> roles = new ArrayList<String>();
+    public Collection<? extends GrantedAuthority> getCurrentUserRoles() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        for(GrantedAuthority grantedAuthority: auth.getAuthorities()){
-            roles.add(grantedAuthority.getAuthority());
-        }
-        return roles;
+        return auth.getAuthorities();
     }
 }

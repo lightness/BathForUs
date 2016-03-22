@@ -1,7 +1,9 @@
 package com.bath.service;
 
 import com.bath.entity.User;
+import org.springframework.security.core.GrantedAuthority;
 
+import java.util.Collection;
 import java.util.List;
 
 public interface UserService {
@@ -12,6 +14,6 @@ public interface UserService {
 
     User getCurrentUser();
 
-    List<String> getCurrentUserRoles();
+    Collection<? extends GrantedAuthority> getCurrentUserRoles();
 
 }

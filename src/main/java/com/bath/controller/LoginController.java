@@ -1,6 +1,7 @@
 package com.bath.controller;
 
 import com.bath.dto.UserCredentials;
+import com.bath.entity.User;
 import com.bath.exception.LoginException;
 import com.bath.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 @Controller
 @RequestMapping(value = "/login")
@@ -32,16 +35,18 @@ public class LoginController {
 
     @RequestMapping(method = RequestMethod.GET)
     public @ResponseBody LoginStatus getStatus() {
-        return new LoginStatus(userService.getCurrentUser().getUid(), userService.getCurrentUserRoles());
+        User currentUser = userService.getCurrentUser();
+        LoginStatus loginStatus = new LoginStatus();
+        loginStatus.setUsername(currentUser != null ? currentUser.getUid() : null);
+        loginStatus.setRoles(userService.getCurrentUserRoles());
+        return loginStatus;
     }
 
     @RequestMapping(method = RequestMethod.POST)
     public @ResponseBody LoginStatus login(
             @RequestBody UserCredentials credentials) {
 
-        UsernamePasswordAuthenticationToken token =
-                new UsernamePasswordAuthenticationToken(
-                        credentials.getUsername(), credentials.getPassword());
+        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(credentials.getUsername(), credentials.getPassword());
         try {
             Authentication auth = authenticationManager.authenticate(token);
             SecurityContextHolder.getContext().setAuthentication(auth);
@@ -54,22 +59,33 @@ public class LoginController {
         }
     }
 
-    public class LoginStatus {
+    private class LoginStatus {
 
-        private final String username;
-        private Collection roles;
+        private String username;
+        private Collection<? extends GrantedAuthority> roles;
 
-        public LoginStatus(String username, Collection roles) {
-            this.username = username;
-            this.roles = roles;
+        LoginStatus() {}
+
+        LoginStatus(String username, Collection<? extends GrantedAuthority> roles) {
+            this.setUsername(username);
+            this.setRoles(roles);
         }
 
         public String getUsername() {
             return username;
         }
 
-        public Collection<GrantedAuthority> getRoles() {
+        public Collection<? extends GrantedAuthority> getRoles() {
             return roles;
         }
+
+        public void setUsername(String username) {
+            this.username = username;
+        }
+
+        public void setRoles(Collection<? extends GrantedAuthority> roles) {
+            this.roles = roles;
+        }
+
     }
 }

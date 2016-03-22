@@ -5,9 +5,20 @@ angular.module('myApp')
             if (data.username && data.username != "anonymousUser") {
                 $rootScope.user.name = data.username;
             }
-            $rootScope.user.isAnonymous = data.roles && data.roles.indexOf('ROLE_ANONYMOUS') > -1;
-            $rootScope.user.isUser = data.roles && data.roles.indexOf('ROLE_USER') > -1;
-            $rootScope.user.isAdmin = data.roles && data.roles.indexOf('ROLE_ADMIN') > -1;
+            var isAnonymous = false;
+            var isUser = false;
+            var isAdmin = false;
+            angular.forEach(data.roles, function (role) {
+                if (role.authority == 'ROLE_ANONYMOUS')
+                    isAnonymous = true;
+                else if (role.authority == 'ROLE_USER')
+                    isUser = true;
+                else if (role.authority == 'ROLE_ADMIN')
+                    isAdmin = true;
+            });
+            $rootScope.user.isAnonymous = isAnonymous;
+            $rootScope.user.isUser = isUser;
+            $rootScope.user.isAdmin = isAdmin;
         }
 
         function processUserDeactivation() {
