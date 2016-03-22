@@ -1,7 +1,13 @@
-<span layout="row" layout-align="end center" class="rate-box">
-    <md-icon md-svg-icon="star" ng-repeat="x in [1,2,3,4,5,6,7,8,9,10]" ng-show="mark" ng-class="{'star-selected': mark >= x }"></md-icon>
-    <md-tooltip md-direction="left" ng-show="mark">
+<span layout="row" layout-align="end center" class="rate-box" ng-show="mode == 'read-only'">
+    <md-icon md-svg-icon="star" ng-repeat="x in [1,2,3,4,5,6,7,8,9,10]" ng-show="mark > 0" ng-class="{'star-selected': mark >= x }"></md-icon>
+    <md-tooltip md-direction="left" ng-show="mark > 0">
         Оценка: {{ mark }}
     </md-tooltip>
-    <span class="md-body-1" ng-hide="mark">Пока не оценивалась</span>
+    <span class="md-body-1" ng-hide="mark > 0">Пока не оценивалась</span>
+</span>
+<span layout="row" layout-align="end center" class="rate-box" ng-show="mode == 'writable'">
+    <md-icon md-svg-icon="star" ng-repeat="x in [1,2,3,4,5,6,7,8,9,10]" ng-show="mark > 0" ng-class="{'star-shined': mark >= x }"></md-icon>
+    <md-tooltip md-direction="left" ng-show="mark > 0">
+        Оценка: {{ mark }}
+    </md-tooltip>
 </span>

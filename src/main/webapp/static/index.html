@@ -60,7 +60,7 @@
             <span ng-class="setClassByUrl('md-subhead', '/bathes')">Список бань</span>
         </md-button>
 
-        <md-button aria-label="Перечень услуг" ng-click="goto('/services')">
+        <md-button aria-label="Перечень услуг" ng-click="goto('/services')" ng-show="$root.user.isAdmin">
             <span ng-class="setClassByUrl('md-subhead', '/services')">Перечень услуг</span>
         </md-button>
 

@@ -7,6 +7,9 @@ angular.module('myApp')
             scope: {
                 mark: '=value'
             },
-            controller: 'ownRateBoxCtrl'
+            controller: 'ownRateBoxCtrl',
+            link: function(scope, element, attrs){
+                scope.mode = 'canRate' in attrs ? 'writable' : 'read-only';
+            }
         }
     });
