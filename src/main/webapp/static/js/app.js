@@ -22,5 +22,12 @@ angular.module('myApp', ['ngRoute', 'ngMaterial', 'md.data.table', 'ngMessages',
             .otherwise({ redirectTo: '/bathes' });
     })
     .run(function ($rootScope, AuthService) {
-        
+        AuthService
+            .init()
+            .then(function () { // TODO: Remove after testing
+                $rootScope.user.name = "Test";
+                $rootScope.user.isAdmin = true;
+                $rootScope.user.isUser = true;
+                $rootScope.user.isAnonymous = true;
+            });
     });

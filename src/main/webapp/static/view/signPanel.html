@@ -1,8 +1,8 @@
 <span layout="row" layout-align="center center">
 
-    <p class="md-body-1" ng-show="$root.username">Добро пожаловать, {{ $root.username }}</p>
+    <p class="md-body-1" ng-show="$root.user.name">Добро пожаловать, {{ $root.user.name }}</p>
 
-    <md-menu ng-hide="$root.username">
+    <md-menu ng-hide="$root.user.name">
         <md-button aria-label="Войти" ng-click="openForm($mdOpenMenu, $event)">
             Войти
         </md-button>
@@ -50,7 +50,7 @@
         </md-menu-content>
     </md-menu>
 
-    <span ng-show="$root.username">
+    <span ng-show="$root.user.name">
         <md-menu ng-hide="inProgress">
             <md-button aria-label="Выйти" ng-click="logout()" ng-disabled="inProgress">
                 Выйти

@@ -5,9 +5,9 @@ angular.module('myApp')
             if (data.username) {
                 $rootScope.user.name = data.username;
             }
-            $rootScope.user.isAnonymous = data.roles.indexOf('anonymous') > -1;
-            $rootScope.user.isUser = data.roles.indexOf('user') > -1;
-            $rootScope.user.isAdmin = data.roles.indexOf('admin') > -1;
+            $rootScope.user.isAnonymous = data.roles && data.roles.indexOf('anonymous') > -1;
+            $rootScope.user.isUser = data.roles && data.roles.indexOf('user') > -1;
+            $rootScope.user.isAdmin = data.roles && data.roles.indexOf('admin') > -1;
         }
 
         function processUserDeactivation() {
@@ -18,7 +18,7 @@ angular.module('myApp')
         }
 
         function init() {
-            LoginRestService
+            return LoginRestService
                 .getStatus()
                 .then(function (response) {
                     processUserActivation(response.data);

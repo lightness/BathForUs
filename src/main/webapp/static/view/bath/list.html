@@ -1,7 +1,7 @@
 <div ng-controller="BathListCtrl">
 
 
-    <md-button class="md-accent md-ink-ripple md-fab " ng-click="showSaveDialog({}, $event)">
+    <md-button class="md-accent md-ink-ripple md-fab" ng-click="showSaveDialog({}, $event)" ng-show="$root.user.isAdmin">
         <md-icon md-svg-icon="add"></md-icon>
         <md-tooltip md-direction="right">
             Добавить баню
@@ -39,14 +39,14 @@
                             <md-icon md-svg-icon="detail" ></md-icon>
                         </md-button>
                         <md-button class="md-fab md-mini md-primary" aria-label="Редактировать"
-                                   ng-click="showSaveDialog(bath, $event)">
+                                   ng-click="showSaveDialog(bath, $event)" ng-show="$root.user.isAdmin">
                             <md-tooltip md-direction="top">
                                 Редактировать
                             </md-tooltip>
                             <md-icon md-svg-icon="edit"></md-icon>
                         </md-button>
                         <md-button class="md-fab md-mini md-warn" aria-label="Удалить"
-                                   ng-click="showDeleteDialog(bath, $event)">
+                                   ng-click="showDeleteDialog(bath, $event)" ng-show="$root.user.isAdmin">
                             <md-tooltip md-direction="top">
                                 Удалить
                             </md-tooltip>
