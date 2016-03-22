@@ -25,9 +25,9 @@
                         <md-tab label="Общие">
                             <md-content class="md-padding" layout="column">
                                 <p layout="row">
-                                    <span class="md-headline">Средняя оценка: {{ bathAverageMark }}</span>
+                                    <span class="md-headline">Средняя оценка: {{ averageMark }}</span>
                                     <span flex></span>
-                                    <own-rate-box value="bathAverageMark"></own-rate-box>
+                                    <own-rate-box value="averageMark"></own-rate-box>
                                 </p>
                                 <span layout="row" layout-align="space-between center" ng-repeat="service in serviceMarks">
                                     <span class="md-subhead">
@@ -39,7 +39,7 @@
                                 </span>
                             </md-content>
                         </md-tab>
-                        <md-tab label="Ваши" ng-enabled="$root.user.name">
+                        <md-tab label="Ваши" ng-disabled="!$root.user.name">
                             <md-content class="md-padding" layout="column">
                                 <p layout="row">
                                     <span class="md-headline">Средняя оценка: {{ myAverageMark }}</span>

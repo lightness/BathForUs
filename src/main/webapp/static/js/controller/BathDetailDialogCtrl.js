@@ -1,54 +1,79 @@
 angular.module('myApp')
+    .factory('MarksService', function ($rootScope, $filter, ServiceRestService, BathRestService, $q) {
+
+        function getFunctionality(bathId) {
+            var functionality = [ServiceRestService.getAll(), BathRestService.getAverageMark(bathId)];
+            if ($rootScope.user.name) {
+                functionality.push(BathRestService.getMyAverageMark(bathId));
+                functionality.push(BathRestService.getMyMarks(bathId));
+            }
+            return functionality;
+        }
+
+        function loadData(bathId) {
+            var deferred = $q.defer();
+            var result = {
+                averageMark: undefined,
+                myAverageMark: undefined,
+                serviceMarks: []
+            };
+            $q.all(getFunctionality(bathId))
+                .then(function (responses) {
+                    var services = responses[0].data.content; // temp
+                    result.averageMark = $filter('number')(responses[1].data, 2);
+                    var myMarks;
+                    if ($rootScope.user.name) {
+                        result.myAverageMark = $filter('number')(responses[2].data, 2);
+                        myMarks = responses[3].data;
+                    }
+
+                    angular.forEach(services, function (service) {
+                        var obj = {
+                            serviceId: service.id,
+                            serviceTitle: service.title
+                        };
+
+                        if ($rootScope.user.name) {
+                            angular.forEach(myMarks, function (myMark) {
+                                if (myMark.service.id == service.id) {
+                                    obj.myValue = myMark.value;
+                                    obj.myMarkId = myMark.id;
+                                }
+                            });
+                        }
+
+                        BathRestService
+                            .getAverageMarkByService(bathId, service.id)
+                            .then(function (response) {
+                                obj.averageValue = $filter('number')(response.data, 2);
+                            });
+
+                        result.serviceMarks.push(obj);
+                    });
+                    deferred.resolve(result);
+                }, function () {
+                    deferred.reject();
+                });
+            return deferred.promise;
+        }
+
+        return {
+            loadData: loadData
+        }
+    })
     .controller('BathDetailDialogCtrl', function ($scope, $mdDialog, $location, BathRestService, MarksService, ServiceRestService, bath, $q, $rootScope, $filter) {
         $scope.bath = bath;
 
         // # marks feature
-        
-        $scope.serviceMarks = [];
 
-        BathRestService
-            .getAverageMark(bath.id)
-            .then(function (response) {
-                $scope.bathAverageMark = $filter('number')(response.data, 2);
+        MarksService
+            .loadData(bath.id)
+            .then(function (data) {
+                angular.extend($scope, data);
+            })
+            .catch(function () {
+               alert('ahtung');
             });
-
-        if ($rootScope.user.name) {
-            BathRestService
-                .getMyAverageMark(bath.id)
-                .then(function (response) {
-                    $scope.myAverageMark = $filter('number')(response.data, 2);
-                });
-        }
-
-        $q.all([
-            ServiceRestService.getAll(),
-            BathRestService.getMyMarks(bath.id)
-        ]).then(function (data) {
-            var services = data[0].data;
-            var myMarks = data[1].data;
-
-            angular.forEach(services.content, function (service) {
-                var obj = {
-                    serviceId: service.id,
-                    serviceTitle: service.title
-                };
-
-                angular.forEach(myMarks, function (v) {
-                    if (v.service.id == service.id) {
-                        obj.myValue = v.value;
-                        obj.myMarkId = v.id;
-                    }
-                });
-
-                BathRestService
-                    .getAverageMarkByService(bath.id, service.id)
-                    .then(function (response) {
-                        obj.averageValue = $filter('number')(response.data, 2);
-                    });
-
-                $scope.serviceMarks.push(obj);
-            });
-        });
 
         $scope.cancel = function () {
             $mdDialog.cancel();
