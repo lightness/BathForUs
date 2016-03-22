@@ -1,6 +1,6 @@
 angular.module('myApp')
-    .controller('BathAddDialogCtrl', function ($scope, $mdDialog, $location, BathRepository, bath, ToastFactory) {
-        $scope.closeDialog = function() {
+    .controller('BathAddDialogCtrl', function ($scope, $mdDialog, $location, BathRestService, bath, ToastFactory) {
+        $scope.closeDialog = function () {
             $mdDialog.hide();
         };
 
@@ -16,12 +16,14 @@ angular.module('myApp')
         $scope.bath = defaultBath;
 
         $scope.save = function () {
-            BathRepository.save($scope.bath).then(function () {
-                $mdDialog.hide();
-                ToastFactory.showToast('Информация о бане "' + $scope.bath.title + '" сохранена');
-            }, function (response) {
-                $scope.bath = defaultBath;
-                ToastFactory.showToast('В процессе сохранения произошла ошибка');
-            });
+            BathRestService
+                .save($scope.bath)
+                .then(function () {
+                    $mdDialog.hide();
+                    ToastFactory.showToast('Информация о бане "' + $scope.bath.title + '" сохранена');
+                }, function (response) {
+                    $scope.bath = defaultBath;
+                    ToastFactory.showToast('В процессе сохранения произошла ошибка');
+                });
         };
     });

@@ -1,5 +1,5 @@
 angular.module('myApp')
-    .controller('ServiceListCtrl', function ($scope, $mdDialog, ServiceRepository, ToastFactory) {
+    .controller('ServiceListCtrl', function ($scope, $mdDialog, ServiceRestService, ToastFactory) {
 
         $scope.selected = [];
         $scope.query = {
@@ -34,7 +34,7 @@ angular.module('myApp')
                     .ok('Удалить')
                     .cancel('Не удалять')
             ).then(function () {
-                ServiceRepository
+                ServiceRestService
                     .remove(service.id)
                     .then(function () {
                         fetchAll();
@@ -67,7 +67,7 @@ angular.module('myApp')
                 "page.sort.dir": $scope.query.dir
             };
 
-            ServiceRepository
+            ServiceRestService
                 .getAll(requestData)
                 .then(function (response) {
                     $scope.data = response.data;

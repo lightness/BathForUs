@@ -1,5 +1,5 @@
 angular.module('myApp')
-    .factory('ServiceRepository', ['$http', function ($http) {
+    .factory('ServiceRestService', function ($http) {
         var url = 'services/';
         return {
             getAll: function (params) {
@@ -15,4 +15,4 @@ angular.module('myApp')
                 return $http.delete(url + id);
             }
         }
-    }]);
+    });

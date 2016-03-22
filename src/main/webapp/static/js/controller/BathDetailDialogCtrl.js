@@ -1,25 +1,25 @@
 angular.module('myApp')
-    .controller('BathDetailDialogCtrl', function ($scope, $mdDialog, $location, BathRepository, ServiceRepository, bath, $q, $rootScope, $filter) {
+    .controller('BathDetailDialogCtrl', function ($scope, $mdDialog, $location, BathRestService, ServiceRestService, bath, $q, $rootScope, $filter) {
         $scope.bath = bath;
 
         $scope.data = [];
 
 
-        BathRepository
+        BathRestService
             .getAverageMark(bath.id)
             .then(function (response) {
                 $scope.bathAverageMark = $filter('number')(response.data, 2);
             });
 
-        BathRepository
+        BathRestService
             .getAverageMarkByUser(bath.id, $rootScope.userId)
             .then(function (response) {
                 $scope.myAverageMark = $filter('number')(response.data, 2);
             });
 
         $q.all([
-            ServiceRepository.getAll(),
-            BathRepository.getMarksByUser(bath.id, $rootScope.userId)
+            ServiceRestService.getAll(),
+            BathRestService.getMarksByUser(bath.id, $rootScope.userId)
         ]).then(function (data) {
             var services = data[0];
             var myMarks = data[1];
@@ -37,7 +37,7 @@ angular.module('myApp')
                     }
                 });
 
-                BathRepository
+                BathRestService
                     .getAverageMarkByService(bath.id, value.id)
                     .then(function (response) {
                         obj.averageValue = $filter('number')(response.data, 2);
@@ -50,6 +50,7 @@ angular.module('myApp')
         $scope.cancel = function () {
             $mdDialog.cancel();
         };
+        
         $scope.answer = function (answer) {
             $mdDialog.hide(answer);                                     // !!!!!!!!!
         };
@@ -63,7 +64,8 @@ angular.module('myApp')
             {'text': 'comment123', 'firstName': 'Vova', 'lastName': 'Oleshko', 'iconPath': 'static/img/123.png'},
             {'text': 'comment3', 'firstName': 'Vova', 'lastName': 'Oleshko', 'iconPath': 'static/img/123.png'},
             {'text': 'comment3', 'firstName': 'Vova', 'lastName': 'Oleshko', 'iconPath': 'static/img/123.png'},
-            {'text': 'comment3', 'firstName': 'Vova', 'lastName': 'Oleshko', 'iconPath': 'static/img/123.png'}];
+            {'text': 'comment3', 'firstName': 'Vova', 'lastName': 'Oleshko', 'iconPath': 'static/img/123.png'}
+        ];
 
         $scope.add = function () {
             $scope.comments.unshift({
@@ -73,8 +75,6 @@ angular.module('myApp')
                 'iconPath': 'static/img/123.png'
             });
             $scope.newComment = "";
-
         };
-
 
     });

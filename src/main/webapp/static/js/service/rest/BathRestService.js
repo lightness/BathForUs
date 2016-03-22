@@ -1,5 +1,5 @@
 angular.module('myApp')
-    .factory('BathRepository', ['$http', function ($http) {
+    .factory('BathRestService', function ($http) {
         var url = 'bathes/';
         return {
             getAll: function (params) {
@@ -33,4 +33,4 @@ angular.module('myApp')
                 return $http.get(url + id + "/marks/average");
             }
         }
-    }]);
+    });

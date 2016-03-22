@@ -26,9 +26,6 @@ public class Bath extends AbstractPersistable<Long>
     @Column
     private String info;
 
-    @Column
-    private Double averageMark;
-
 
     public String getTitle()
     {
@@ -68,16 +65,6 @@ public class Bath extends AbstractPersistable<Long>
     public void setInfo(String info)
     {
         this.info = info;
-    }
-
-    public Double getAverageMark()
-    {
-        return averageMark;
-    }
-
-    public void setAverageMark(Double averageMark)
-    {
-        this.averageMark = averageMark;
     }
 
     public void setId(Long id)

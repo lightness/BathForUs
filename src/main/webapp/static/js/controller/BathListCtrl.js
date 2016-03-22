@@ -1,5 +1,5 @@
 angular.module('myApp')
-    .controller('BathListCtrl', function ($scope, BathRepository, $mdDialog, $location, $mdToast, ToastFactory) {
+    .controller('BathListCtrl', function ($scope, BathRestService, $mdDialog, $location, $mdToast, ToastFactory) {
 
         $scope.selected = [];
         $scope.query = {
@@ -33,7 +33,7 @@ angular.module('myApp')
                     .ok('Удалить')
                     .cancel('Не удалять')
             ).then(function () {
-                BathRepository
+                BathRestService
                     .remove(bath.id)
                     .then(function () {
                         fetchAll();
@@ -75,7 +75,7 @@ angular.module('myApp')
                 "page.sort.dir": $scope.query.sort.startsWith('-') ? 'desc' : 'asc'
             };
 
-            BathRepository
+            BathRestService
                 .getAll(requestData)
                 .then(function (response) {
                     $scope.data = response.data;

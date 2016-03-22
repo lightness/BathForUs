@@ -1,4 +1,4 @@
-angular.module('myApp', ['ngRoute', 'ngMaterial', 'md.data.table', 'ngMessages', 'ngCookies', 'textAngular'])
+angular.module('myApp', ['ngRoute', 'ngMaterial', 'md.data.table', 'ngMessages', 'textAngular'])
     .config(function($routeProvider, $mdIconProvider){
         'use strict';
 
@@ -21,11 +21,6 @@ angular.module('myApp', ['ngRoute', 'ngMaterial', 'md.data.table', 'ngMessages',
             .when('/services', new View('service/list.html', 'ServiceListCtrl'))
             .otherwise({ redirectTo: '/bathes' });
     })
-    .run(function ($rootScope, $cookieStore) {
-        var username = $cookieStore.get("username");
-        var userId = $cookieStore.get("userId");
-        if (username && userId){
-            $rootScope.username = username;
-            $rootScope.userId = userId;
-        }
+    .run(function ($rootScope, AuthService) {
+        
     });
