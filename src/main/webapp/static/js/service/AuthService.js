@@ -2,12 +2,12 @@ angular.module('myApp')
     .factory('AuthService', function ($rootScope, LoginRestService, ToastFactory) {
         function processUserActivation(data) {
             $rootScope.user = {};
-            if (data.username) {
+            if (data.username && data.username != "anonymousUser") {
                 $rootScope.user.name = data.username;
             }
-            $rootScope.user.isAnonymous = data.roles && data.roles.indexOf('anonymous') > -1;
-            $rootScope.user.isUser = data.roles && data.roles.indexOf('user') > -1;
-            $rootScope.user.isAdmin = data.roles && data.roles.indexOf('admin') > -1;
+            $rootScope.user.isAnonymous = data.roles && data.roles.indexOf('ROLE_ANONYMOUS') > -1;
+            $rootScope.user.isUser = data.roles && data.roles.indexOf('ROLE_USER') > -1;
+            $rootScope.user.isAdmin = data.roles && data.roles.indexOf('ROLE_ADMIN') > -1;
         }
 
         function processUserDeactivation() {

@@ -4,7 +4,6 @@ angular.module('myApp')
 
         $scope.data = [];
 
-
         BathRestService
             .getAverageMark(bath.id)
             .then(function (response) {
