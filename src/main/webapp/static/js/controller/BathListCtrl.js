@@ -49,7 +49,10 @@ angular.module('myApp')
                 controller: 'BathDetailDialogCtrl',
                 templateUrl: 'static/view/bath/detailDialog.html',
                 targetEvent: $event,
-                locals: {bath: bath}
+                locals: {bath: bath},
+                onRemoving: function () { 
+                    fetchAll();
+                }
             });
         };
 
