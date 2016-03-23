@@ -1,6 +1,5 @@
 package com.bath.entity;
 
-import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -8,7 +7,7 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table
-public class Service extends AbstractPersistable<Long>
+public class Service extends Identified<Long>
 {
     @NotNull
     @Column(nullable = false)

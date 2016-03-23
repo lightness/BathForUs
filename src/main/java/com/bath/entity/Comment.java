@@ -1,7 +1,5 @@
 package com.bath.entity;
 
-import org.springframework.data.jpa.domain.AbstractPersistable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
@@ -10,7 +8,7 @@ import java.util.Calendar;
 
 @Entity
 @Table
-public class Comment extends AbstractPersistable<Long> {
+public class Comment extends Identified<Long> {
 
     @Column
     private String text;

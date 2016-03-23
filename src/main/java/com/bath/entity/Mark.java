@@ -1,13 +1,12 @@
 package com.bath.entity;
 
-import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import javax.persistence.*;
 
 
 @Entity
 @Table
-public class Mark extends AbstractPersistable<Long>
+public class Mark extends Identified<Long>
 {
     @ManyToOne
     private Bath bath;
