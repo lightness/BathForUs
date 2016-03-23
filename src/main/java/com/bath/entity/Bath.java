@@ -1,15 +1,12 @@
 package com.bath.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.springframework.data.jpa.domain.AbstractPersistable;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 
 @Entity
 @Table
-public class Bath extends AbstractPersistable<Long>
+public class Bath extends Identified<Long>
 {
     @NotNull
     @Column(nullable = false)
