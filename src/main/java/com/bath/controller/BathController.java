@@ -1,7 +1,9 @@
 package com.bath.controller;
 
+import com.bath.dto.BathListItemDto;
 import com.bath.entity.Bath;
 import com.bath.repository.BathRepository;
+import com.bath.service.BathService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
@@ -15,11 +17,14 @@ public class BathController
     @Autowired
     private BathRepository bathRepository;
 
+    @Autowired
+    private BathService bathService;
+
 
     @RequestMapping(method = RequestMethod.GET)
-    public @ResponseBody Iterable<Bath> findAll(Pageable pageable)
+    public @ResponseBody Iterable<BathListItemDto> findAll(Pageable pageable)
     {
-        return bathRepository.findAll(pageable);
+        return bathService.getAllWithPageable(pageable);
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.GET)

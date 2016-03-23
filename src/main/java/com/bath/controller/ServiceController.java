@@ -3,6 +3,7 @@ package com.bath.controller;
 import com.bath.entity.Service;
 import com.bath.repository.ServiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +18,7 @@ public class ServiceController
 
 
     @RequestMapping(method = RequestMethod.GET)
-    public @ResponseBody Iterable<Service> findAll(Pageable pageable)
+    public @ResponseBody Page<Service> findAll(Pageable pageable)
     {
         return serviceRepository.findAll(pageable);
     }
