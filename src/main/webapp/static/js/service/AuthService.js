@@ -49,7 +49,7 @@ angular.module('myApp')
                     if (error.status == 403) {
                         ToastFactory.showToast("Неверный логин или пароль");
                         return $q.reject();
-                    } else { debugger;
+                    } else { 
                         ToastFactory.showToast('Ошибка в процессе аутентификации');
                         return "Unexpected error";
                     }

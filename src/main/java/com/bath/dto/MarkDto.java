@@ -11,9 +11,6 @@ public class MarkDto
     @NotNull
     private Long value;
 
-    @NotNull
-    private String comment;
-
 
     public Long getServiceId()
     {
@@ -33,15 +30,5 @@ public class MarkDto
     public void setValue(Long value)
     {
         this.value = value;
-    }
-
-    public String getComment()
-    {
-        return comment;
-    }
-
-    public void setComment(String comment)
-    {
-        this.comment = comment;
     }
 }

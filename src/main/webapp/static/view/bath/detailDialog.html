@@ -25,11 +25,11 @@
                         <md-tab label="Общие">
                             <md-content class="md-padding" layout="column">
                                 <p layout="row">
-                                    <span class="md-headline">Средняя оценка: {{ averageMark }}</span>
+                                    <span class="md-headline">Средняя оценка: {{ marks.averageMark }}</span>
                                     <span flex></span>
-                                    <own-rate-box value="averageMark"></own-rate-box>
+                                    <own-rate-box value="marks.averageMark"></own-rate-box>
                                 </p>
-                                <span layout="row" layout-align="space-between center" ng-repeat="service in serviceMarks">
+                                <span layout="row" layout-align="space-between center" ng-repeat="service in marks.serviceMarks">
                                     <span class="md-subhead">
                                         {{ service.serviceTitle }}:
                                         <span ng-show="service.averageValue">{{ service.averageValue }}</span>
@@ -42,17 +42,17 @@
                         <md-tab label="Ваши" ng-disabled="!$root.user.name">
                             <md-content class="md-padding" layout="column">
                                 <p layout="row">
-                                    <span class="md-headline">Средняя оценка: {{ myAverageMark }}</span>
+                                    <span class="md-headline">Средняя оценка: {{ marks.myAverageMark }}</span>
                                     <span flex></span>
-                                    <own-rate-box value="myAverageMark"></own-rate-box>
+                                    <own-rate-box value="marks.myAverageMark"></own-rate-box>
                                 </p>
-                                <span layout="row" layout-align="space-between center" ng-repeat="service in serviceMarks">
+                                <span layout="row" layout-align="space-between center" ng-repeat="service in marks.serviceMarks">
                                     <span class="md-subhead">
                                         {{ service.serviceTitle }}:
                                         <span ng-show="service.myValue">{{ service.myValue }}</span>
                                     </span>
                                     <span flex></span>
-                                    <own-rate-box value="service.myValue" can-rate></own-rate-box>
+                                    <own-rate-box value="service.myValue" can-rate service-id="service.serviceId" bath-id="bath.id" on-rate="updateAverageValues"></own-rate-box>
                                 </span>
                             </md-content>
                         </md-tab>

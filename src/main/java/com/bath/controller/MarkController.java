@@ -39,11 +39,7 @@ public class MarkController
             @PathVariable Long bathId,
             @RequestBody MarkDto markDto)
     {
-        Mark mark = new Mark();
-        mark.setBath(bathRepository.findOne(bathId));
-        mark.setService(serviceRepository.findOne(markDto.getServiceId()));
-        mark.setValue(markDto.getValue());
-        return markRepository.save(mark);
+        return markService.putMark(bathId, markDto.getServiceId(), markDto.getValue());
     }
 
     @RequestMapping(value = "bathes/{bathId}/marks/average", method = RequestMethod.GET)

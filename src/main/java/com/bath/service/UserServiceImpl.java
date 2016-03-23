@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean isAdmin(String username) {
-        return false;
+        return true;
     }
 
     @Override
