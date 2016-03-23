@@ -26,13 +26,12 @@
                 </md-input-container>
                 <md-input-container class="md-block flex-gt-sm">
                     <label>Название</label>
-                    <input name="title" ng-model="service.title" class="md-input" required>
+                    <input name="title" ng-model="service.title" md-maxlength="255" class="md-input" required>
                 </md-input-container>
                 <md-input-container class="md-block flex-gt-sm">
                     <label>Код</label>
-                    <input name="code" ng-model="service.code" class="md-input" required>
+                    <input name="code" ng-model="service.code" md-maxlength="255" class="md-input" required>
                 </md-input-container>
-
             </div>
         </md-content>
     </md-content>
