@@ -44,3 +44,12 @@ keytool -delete -alias s1as -keystore keystore.jks
 
 ### Done
 Restart glassfish.
+
+### P.S.
+Now you should add *office.int.crt* to your browser / OS
+If you use chrome:
+1. Click "Install certificate"
+2. Double click at *office.int.crt*
+3. Choose custom certificate location 
+4. Choose second item at list (trusted root CA certificate)
+5. Finish wizard
