@@ -123,7 +123,7 @@ angular.module('myApp')
 
         // # comment feature
 
-        CommentRestService.get(1).then(function (response) {
+        CommentRestService.get(bath.id).then(function (response) {
             $scope.comments = response.data;
             $scope.error = '';
         }, function (response) {
@@ -133,11 +133,7 @@ angular.module('myApp')
 
         $scope.add = function () {
             if($scope.newComment != ""){
-
-                //TO DO: UserId
-                var comment = {'user_id': 2, 'bath_id': bath.id, 'text': $scope.newComment};
-
-                CommentRestService.save(comment).then(function (response) {
+                CommentRestService.save(bath.id,{'text' : $scope.newComment}).then(function (response) {
                     $scope.comments.unshift(response.data);
                     $scope.error = '';
                 }, function (response) {

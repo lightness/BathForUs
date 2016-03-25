@@ -5,8 +5,8 @@ angular.module('myApp')
             get: function (id) {
                 return $http.get('bathes/' + id + '/comments');
             },
-            save: function (comment) {
-                return $http.post(url, comment);
+            save: function (bathId, comment) {
+                return $http.post('bathes/' + bathId + "/comment",  comment);
             },
             remove: function (id) {
                 return $http.delete(url + id);

@@ -1,5 +1,7 @@
 package com.bath.service;
 
-public interface CommentService {
+import com.bath.entity.Comment;
 
+public interface CommentService {
+    Comment putComment(Long bathId, String text);
 }
