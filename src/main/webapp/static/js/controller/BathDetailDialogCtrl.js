@@ -90,7 +90,7 @@ angular.module('myApp')
             updateAverageValues: updateAverageValues
         }
     })
-    .controller('BathDetailDialogCtrl', function ($scope, $mdDialog, $location, BathRestService, MarksService, ServiceRestService, CommentRestService, bath, ToastFactory) {
+    .controller('BathDetailDialogCtrl', function ($scope, $mdDialog, $location, BathRestService, MarksService, ServiceRestService, bath, ToastFactory) {
         $scope.bath = bath;
         $scope.marks;
 
