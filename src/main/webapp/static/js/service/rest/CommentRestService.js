@@ -1,12 +1,12 @@
 angular.module('myApp')
     .factory('CommentRestService', function ($http) {
-        var url = 'bathes/';
+        var url = 'comment/';
         return {
-            get: function (params) {
-                return $http.get(url, { params: params });
+            get: function (id) {
+                return $http.get('bathes/' + id + '/comments');
             },
-            save: function (bath) {
-                return $http.post(url, bath);
+            save: function (comment) {
+                return $http.post(url, comment);
             },
             remove: function (id) {
                 return $http.delete(url + id);

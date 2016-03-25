@@ -90,7 +90,7 @@ angular.module('myApp')
             updateAverageValues: updateAverageValues
         }
     })
-    .controller('BathDetailDialogCtrl', function ($scope, $mdDialog, $location, BathRestService, MarksService, ServiceRestService, bath, ToastFactory) {
+    .controller('BathDetailDialogCtrl', function ($scope, $mdDialog, $location, BathRestService, MarksService, ServiceRestService, CommentRestService, bath, ToastFactory) {
         $scope.bath = bath;
         $scope.marks;
 
@@ -123,25 +123,27 @@ angular.module('myApp')
 
         // # comment feature
 
-        $scope.comments = [{
-            'text': 'comment33пукпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмр',
-            'firstName': 'Vova',
-            'lastName': 'Oleshko',
-            'iconPath': 'static/img/123.png'
-        },
-            {'text': 'comment123', 'firstName': 'Vova', 'lastName': 'Oleshko', 'iconPath': 'static/img/123.png'},
-            {'text': 'comment3', 'firstName': 'Vova', 'lastName': 'Oleshko', 'iconPath': 'static/img/123.png'},
-            {'text': 'comment3', 'firstName': 'Vova', 'lastName': 'Oleshko', 'iconPath': 'static/img/123.png'},
-            {'text': 'comment3', 'firstName': 'Vova', 'lastName': 'Oleshko', 'iconPath': 'static/img/123.png'}
-        ];
+        CommentRestService.get(1).then(function (response) {
+            $scope.comments = response.data;
+            $scope.error = '';
+        }, function (response) {
+            $scope.comments = [];
+            $scope.error = response.status;
+        });
 
         $scope.add = function () {
-            $scope.comments.unshift({
-                'text': $scope.newComment,
-                'firstName': 'Vova',
-                'lastName': 'Oleshko',
-                'iconPath': 'static/img/123.png'
-            });
+            if($scope.newComment != ""){
+
+                //TO DO: UserId
+                var comment = {'user_id': 2, 'bath_id': bath.id, 'text': $scope.newComment};
+
+                CommentRestService.save(comment).then(function (response) {
+                    $scope.comments.unshift(response.data);
+                    $scope.error = '';
+                }, function (response) {
+                    $scope.error = response.status;
+                });
+            }
             $scope.newComment = "";
         };
 
