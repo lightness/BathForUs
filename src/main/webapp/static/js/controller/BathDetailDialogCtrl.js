@@ -123,25 +123,23 @@ angular.module('myApp')
 
         // # comment feature
 
-        $scope.comments = [{
-            'text': 'comment33пукпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмпмр',
-            'firstName': 'Vova',
-            'lastName': 'Oleshko',
-            'iconPath': 'static/img/123.png'
-        },
-            {'text': 'comment123', 'firstName': 'Vova', 'lastName': 'Oleshko', 'iconPath': 'static/img/123.png'},
-            {'text': 'comment3', 'firstName': 'Vova', 'lastName': 'Oleshko', 'iconPath': 'static/img/123.png'},
-            {'text': 'comment3', 'firstName': 'Vova', 'lastName': 'Oleshko', 'iconPath': 'static/img/123.png'},
-            {'text': 'comment3', 'firstName': 'Vova', 'lastName': 'Oleshko', 'iconPath': 'static/img/123.png'}
-        ];
+        CommentRestService.get(bath.id).then(function (response) {
+            $scope.comments = response.data;
+            $scope.error = '';
+        }, function (response) {
+            $scope.comments = [];
+            $scope.error = response.status;
+        });
 
         $scope.add = function () {
-            $scope.comments.unshift({
-                'text': $scope.newComment,
-                'firstName': 'Vova',
-                'lastName': 'Oleshko',
-                'iconPath': 'static/img/123.png'
-            });
+            if($scope.newComment != ""){
+                CommentRestService.save(bath.id,{'text' : $scope.newComment}).then(function (response) {
+                    $scope.comments.unshift(response.data);
+                    $scope.error = '';
+                }, function (response) {
+                    $scope.error = response.status;
+                });
+            }
             $scope.newComment = "";
         };
 

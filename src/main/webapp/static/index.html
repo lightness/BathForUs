@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="static/bower_components/angular-material-data-table/dist/md-data-table.min.css">
 
     <link rel='stylesheet' href='static/bower_components/textAngular/dist/textAngular.css'>
+    <link rel='stylesheet' href="static/bower_components/font-awesome/css/font-awesome.css">
     <link rel="stylesheet" href="static/css/style.css">
 
 
@@ -24,7 +25,8 @@
 
     <script src='static/bower_components/textAngular/dist/textAngular-rangy.min.js'></script>
     <script src='static/bower_components/textAngular/dist/textAngular-sanitize.min.js'></script>
-    <script src='static/bower_components/textAngular/dist/textAngular.min.js'></script><!-- min. -->
+    <script src='static/bower_components/textAngular/dist/textAngular.min.js'></script>
+    <!-- min. -->
 
     <script src="static/js/app.js"></script>
 
@@ -44,6 +46,7 @@
     <script src="static/js/service/rest/BathRestService.js"></script>
     <script src="static/js/service/rest/ServiceRestService.js"></script>
     <script src="static/js/service/rest/LoginRestService.js"></script>
+    <script src="static/js/service/rest/CommentRestService.js"></script>
 </head>
 <body>
 
@@ -53,7 +56,6 @@
         <md-button class="md-icon-button logo" ng-click="goto('/bathes')">
             <md-icon md-svg-icon="broom"></md-icon>
         </md-button>
-
         <h2 class="logo-text">#BathForUs</h2>
 
         <md-button aria-label="Список бань" ng-click="goto('/bathes')">
