@@ -1,10 +1,15 @@
 package com.bath.controller;
 
 import com.bath.dto.UserCredentials;
+import com.bath.entity.AverageByBath;
 import com.bath.entity.User;
 import com.bath.exception.LoginException;
+import com.bath.repository.AverageByBathRepository;
 import com.bath.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.InternalAuthenticationServiceException;
@@ -30,11 +35,16 @@ public class LoginController {
     private AuthenticationManager authenticationManager;
 
     @Autowired
+    private AverageByBathRepository averageByBathRepository;
+
+    @Autowired
     private UserService userService;
 
 
     @RequestMapping(method = RequestMethod.GET)
     public @ResponseBody LoginStatus getStatus() {
+        List<AverageByBath> all = averageByBathRepository.findAll( new Sort(Sort.Direction.DESC, "bathId"));
+
         User currentUser = userService.getCurrentUser();
         LoginStatus loginStatus = new LoginStatus();
         loginStatus.setUsername(currentUser != null ? currentUser.getUid() : null);

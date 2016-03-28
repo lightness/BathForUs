@@ -20,10 +20,10 @@ public interface MarkRepository extends JpaRepository<Mark, Long>
 
     Mark findOneByBathIdAndServiceIdAndUserId(Long bathId, Long serviceId, Long userId);
 
-    @Query(value = "select avg(AM.AVG_MARK) from ( select avg(M.value) as AVG_MARK from mark M where M.bath_id = :bathId group by M.user_id ) AM", nativeQuery = true)
+    @Query(value = "select AVG_VALUE from average_by_bath where BATH_ID = :bathId", nativeQuery = true)
     Double findAvgByBathId(@Param("bathId") Long bathId);
 
-    @Query(value = "select AVG(M.value) from mark M where M.bath_id = :bathId and M.user_id = :userId group by M.user_id", nativeQuery = true)
+    @Query(value = "select AVG_VALUE from average_by_bath_and_user where BATH_ID = :bathId and USER_ID = :userId", nativeQuery = true)
     Double findAvgByBathIdAndUserId(@Param("bathId") Long bathId, @Param("userId") Long userId);
 
     @Query(value = "select AVG(M.value) from mark M where M.bath_id = :bathId and M.service_id = :serviceId group by M.service_id", nativeQuery = true)
