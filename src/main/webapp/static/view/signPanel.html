@@ -1,6 +1,8 @@
 <span layout="row" layout-align="center center">
 
-    <p class="md-body-1" ng-show="$root.user.name">Добро пожаловать, {{ $root.user.name }}</p>
+    <p class="md-body-1" ng-show="$root.user.name">Добро пожаловать,
+        <i class="fa fa-user" />
+        {{ $root.user.name }}</p>
 
     <md-menu ng-hide="$root.user.name">
         <md-button aria-label="Войти" ng-click="openForm($mdOpenMenu, $event)">
