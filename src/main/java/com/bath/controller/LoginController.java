@@ -43,7 +43,8 @@ public class LoginController {
 
     @RequestMapping(method = RequestMethod.GET)
     public @ResponseBody LoginStatus getStatus() {
-        List<AverageByBath> all = averageByBathRepository.findAll( new Sort(Sort.Direction.DESC, "bathId"));
+        List<AverageByBath> all = averageByBathRepository.findAll( new Sort(Sort.Direction.DESC, "bath.id"));
+        //List<AverageByBath> all = averageByBathRepository.findAll();
 
         User currentUser = userService.getCurrentUser();
         LoginStatus loginStatus = new LoginStatus();

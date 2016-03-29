@@ -1,5 +1,6 @@
 package com.bath.service;
 
+import com.bath.entity.AverageByBath;
 import com.bath.entity.Mark;
 import com.bath.entity.User;
 import com.bath.repository.BathRepository;
@@ -7,6 +8,7 @@ import com.bath.repository.MarkRepository;
 import com.bath.repository.ServiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class MarkServiceImpl implements MarkService {
@@ -23,6 +25,9 @@ public class MarkServiceImpl implements MarkService {
     @Autowired
     ServiceRepository serviceRepository;
 
+    @Autowired
+    private AverageByBathService averageByBathService;
+
 
     @Override
     public Iterable<Mark> findUserMarksByBathId(Long bathId) {
@@ -35,6 +40,7 @@ public class MarkServiceImpl implements MarkService {
     }
 
     @Override
+    @Transactional
     public Mark putMark(Long bathId, Long serviceId, Long value) {
         User currentUser = userService.getCurrentUser();
         Mark mark = markRepository.findOneByBathIdAndServiceIdAndUserId(bathId, serviceId, currentUser.getId());
@@ -45,6 +51,17 @@ public class MarkServiceImpl implements MarkService {
             mark.setUser(currentUser);
         }
         mark.setValue(value);
-        return markRepository.save(mark);
+        Mark updatedMark = markRepository.save(mark);
+
+        // Update average mark by bath and service
+
+        // Update average mark by bath and user
+
+        // Update average mark by bath
+        averageByBathService.update(bathId);
+
+        return updatedMark;
     }
+
+
 }

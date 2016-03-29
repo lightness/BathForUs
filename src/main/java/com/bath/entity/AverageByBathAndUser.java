@@ -1,44 +1,36 @@
 package com.bath.entity;
 
-import org.hibernate.annotations.Immutable;
-import org.hibernate.annotations.Subselect;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 
 @Entity
-@Immutable
 @Table(name = "average_by_bath_and_user")
-public class AverageByBathAndUser {
+public class AverageByBathAndUser extends Identified<Long>
+{
+    @ManyToOne
+    private Bath bath;
 
-    @Id
-    @Column(name = "bath_id")
-    private Long bathId;
-
-    @Column(name = "user_id")
-    private Long userId;
+    @ManyToOne
+    private User user;
 
     @Column(name = "avg_value")
     private Double avgValue;
 
 
-    public Long getBathId() {
-        return bathId;
+    public Bath getBath() {
+        return bath;
     }
 
-    public void setBathId(Long bathId) {
-        this.bathId = bathId;
+    public void setBath(Bath bath) {
+        this.bath = bath;
     }
 
-    public Long getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Double getAvgValue() {

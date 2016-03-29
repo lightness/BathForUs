@@ -1,32 +1,25 @@
 package com.bath.entity;
 
-import org.hibernate.annotations.Immutable;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 
 @Entity
-@Immutable
 @Table(name = "average_by_bath")
-public class AverageByBath {
-
-    @Id
-    @Column(name = "bath_id")
-    private Long bathId;
+public class AverageByBath extends Identified<Long>
+{
+    @OneToOne
+    private Bath bath;
 
     @Column(name = "avg_value")
     private Double avgValue;
 
 
-    public Long getBathId() {
-        return bathId;
+    public Bath getBath() {
+        return bath;
     }
 
-    public void setBathId(Long bathId) {
-        this.bathId = bathId;
+    public void setBath(Bath bath) {
+        this.bath = bath;
     }
 
     public Double getAvgValue() {

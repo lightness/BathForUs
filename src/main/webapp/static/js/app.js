@@ -8,6 +8,7 @@ angular.module('myApp', ['ngRoute', 'ngMaterial', 'md.data.table', 'ngMessages',
             .icon('detail', 'static/img/svg/detail.svg', 24)
             .icon('edit', 'static/img/svg/edit.svg', 24)
             .icon('star', 'static/img/svg/star.svg', 24)
+            .icon('warning', 'static/img/svg/warning.svg', 24)
             .icon('broom', 'static/img/svg/broom.svg', 48);
 
 
@@ -23,7 +24,8 @@ angular.module('myApp', ['ngRoute', 'ngMaterial', 'md.data.table', 'ngMessages',
     })
     .run(function ($rootScope, AuthService) {
         AuthService
-            .init()
+            .init();
+
             // .then(function () { // TODO: Remove after testing
             //     $rootScope.user.name = "Test";
             //     $rootScope.user.isAdmin = true;

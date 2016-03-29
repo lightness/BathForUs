@@ -1,4 +1,4 @@
-<div ng-controller="ServiceListCtrl">
+<div ng-controller="ServiceListCtrl" ng-show="$root.user.isAdmin">
 
     <md-button class="md-accent md-ink-ripple md-fab" ng-click="showSaveDialog({}, $event)">
         <md-icon md-svg-icon="add"></md-icon>
@@ -22,13 +22,15 @@
                 <td md-cell>{{ service.code }}</td>
                 <td md-cell>
                     <section layout="row" layout-align="end center" layout-wrap>
-                        <md-button class="md-fab md-mini md-primary" aria-label="Редактировать" ng-click="showSaveDialog(service, $event)">
+                        <md-button class="md-fab md-mini md-primary" aria-label="Редактировать"
+                                   ng-click="showSaveDialog(service, $event)">
                             <md-tooltip md-direction="top">
                                 Редактировать
                             </md-tooltip>
                             <md-icon md-svg-icon="edit"></md-icon>
                         </md-button>
-                        <md-button class="md-fab md-mini md-warn" aria-label="Удалить" ng-click="showDeleteDialog(service, $event)">
+                        <md-button class="md-fab md-mini md-warn" aria-label="Удалить"
+                                   ng-click="showDeleteDialog(service, $event)">
                             <md-tooltip md-direction="top">
                                 Удалить
                             </md-tooltip>
@@ -50,4 +52,10 @@
 
     </md-table-pagination>
 
+</div>
+<div ng-hide="$root.user.isAdmin" layout="row" layout-align="center center" style="height: 100%">
+    <md-content layout="column" layout-align="center center" class="layout-padding">
+        <md-icon md-svg-icon="warning" style="width: 72px; height: 72px;"></md-icon>
+        <h1 class="md-display-1">Вы не обладаете правами на просмотр данной страницы</h1>
+    </md-content>
 </div>

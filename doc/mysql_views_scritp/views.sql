@@ -3,6 +3,7 @@
 drop table AVERAGE_BY_BATH;
 create view AVERAGE_BY_BATH as
   select
+    B.id as ID,
     B.id as BATH_ID,
     ( select avg(M.value)
       from mark M
@@ -16,6 +17,7 @@ create view AVERAGE_BY_BATH as
 drop table AVERAGE_BY_BATH_AND_SERVICE;
 create view AVERAGE_BY_BATH_AND_SERVICE as
   select
+    B.id as ID,
     B.id as BATH_ID,
     S.id as SERVICE_ID,
     ( select avg(M.value)
@@ -31,6 +33,7 @@ create view AVERAGE_BY_BATH_AND_SERVICE as
 drop table AVERAGE_BY_BATH_AND_USER;
 create view AVERAGE_BY_BATH_AND_USER as
   select
+    B.id as ID,
     B.id as BATH_ID,
     U.id as USER_ID,
     ( select avg(M.value)
